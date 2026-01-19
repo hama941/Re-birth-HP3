@@ -3,360 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>水道修理サービスLP</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>LPエリア対応セクション（ネイビーver）</title>
     <style>
-        /* カラーパレット定義 */
-        :root {
-            --primary-navy: #0f2c52; /* 濃紺 */
-            --accent-gold: #c5a059; /* ゴールド */
-            --accent-orange: #ff9800; /* 明るいオレンジ */
-            --text-dark: #1a1a1a;
-            --bg-body: #dce4eb; 
-            --bg-paper: #fcfcfc;
-            --solid-shadow: 0 10px 25px rgba(15, 44, 82, 0.15);
-        }
-
+        /* ベースのフォント設定 */
         body {
-            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-            margin: 0;
-            padding: 20px 0;
-            background-color: var(--bg-body);
+            font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            background-color: #f4f4f7; /* 背景も少し落ち着いた色に変更 */
             display: flex;
             justify-content: center;
-            min-height: 100vh;
-            align-items: center;
-            box-sizing: border-box;
+            padding: 20px;
+            margin: 0;
         }
 
-        .lp-container {
+        /* --- カラー定義 --- */
+        :root {
+            --main-navy: #1a2a45; /* メインのネイビー色 */
+            --accent-yellow: #ffcc00; /* 黄色文字 */
+            --accent-orange: #ff6600; /* オレンジの点 */
+        }
+
+        /* 外側の白いカード枠 */
+        .area-card {
             width: 100%;
             max-width: 480px;
-            background-color: var(--bg-paper);
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
-            border-radius: 10px;
-            box-shadow: var(--solid-shadow);
-            position: relative;
-            padding-bottom: 40px;
+            background: #fff;
+            border: 3px solid var(--main-navy); /* 【変更】ネイビーに変更 */
+            border-radius: 12px;
             overflow: hidden;
-            border-top: 8px solid var(--primary-navy);
-            border-bottom: 8px solid var(--primary-navy);
-        }
-
-        .content {
-            position: relative;
-            z-index: 1;
-            /* パディングを調整して、ヘッダー帯が端まで届くようにする */
-            padding: 0 0 30px 0;
+            box-shadow: 0 4px 15px rgba(26, 42, 69, 0.15);
             text-align: center;
         }
 
-        /* ▼▼▼ 変更箇所：ヘッダーを横幅いっぱいの帯にするスタイル ▼▼▼ */
-        .header-band {
-            background: var(--primary-navy); /* 全面ネイビー */
-            color: #fff;
-            padding: 35px 20px; /* 上下の余白をたっぷり取る */
-            margin-bottom: 35px;
-            width: 100%;
-            box-sizing: border-box;
-            border-bottom: 4px solid var(--accent-gold); /* 下にゴールドのラインで引き締め */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-
-        .header-text-upper {
-            font-size: 22px;
+        /* ヘッダー（ネイビー背景部分） */
+        .card-header {
+            background-color: var(--main-navy); /* 【変更】ネイビーに変更 */
+            color: var(--accent-yellow);
+            padding: 15px 10px;
             font-weight: bold;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            opacity: 0.9;
         }
 
-        .header-text-lower {
-            font-size: 30px;
-            font-weight: 900;
-            font-style: italic;
-            color: #fff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        .header-pref {
+            font-size: 1.4rem;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .header-sub {
+            font-size: 1.5rem;
+            margin-top: 5px;
             line-height: 1.2;
         }
-        
-        .time-emphasize {
-            font-size: 46px;
+
+        /* メインコンテンツエリア */
+        .card-body {
+            padding: 20px 15px;
+            /* 背景のうっすら横線も少し色を調整 */
+            background-image: linear-gradient(transparent 50%, rgba(26, 42, 69, 0.03) 50%);
+            background-size: 100% 4px; 
+        }
+
+        /* 「最短10分で駆けつけ！」の部分 */
+        .headline-wrapper {
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* 強調のオレンジ色の点（圏点） */
+        .emphasis-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-bottom: -15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-orange);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* メインキャッチコピー */
+        .main-headline {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--main-navy); /* 【変更】基本色もネイビー寄りに */
             font-style: italic;
-            margin: 0 5px;
-            position: relative;
-            display: inline-block;
-            color: var(--accent-orange);
-            font-family: 'Arial Black', sans-serif;
-            text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
-            -webkit-text-stroke: 1px #fff;
+            line-height: 1.4;
         }
-        /* 「10分」の上の点々 */
-        .time-emphasize::before {
-            content: "• • •";
-            position: absolute;
-            top: -22px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 18px;
-            color: #fff;
-            letter-spacing: 6px;
+
+        /* 「最短」テキスト強調 */
+        .highlight-text {
+             color: var(--main-navy); /* 【変更】ネイビーに変更 */
+             font-style: italic;
+             font-size: 2rem;
+             margin-right: 5px;
+        }
+
+        /* 「10分」数字強調 */
+        .highlight-number {
+            color: var(--main-navy); /* 【変更】ネイビーに変更 */
+            font-size: 2.8rem;
+            font-family: Arial, sans-serif;
+            font-weight: 900;
+            margin: 0 2px;
+            letter-spacing: -2px;
+        }
+
+        .suffix {
+            font-size: 1.2rem;
             font-style: normal;
-        }
-        /* ▲▲▲ 変更箇所ここまで ▲▲▲ */
-
-        /* コンテンツ部分のインナーラッパー（左右の余白確保用） */
-        .inner-content {
-            padding: 0 25px;
+            color: #222;
+            font-weight: bold;
         }
 
-        /* 安心ポイントボックス */
-        .solid-box {
-            background: #fff;
-            border: 2px solid var(--primary-navy);
-            border-radius: 8px;
-            margin: 0 auto 35px;
-            width: 100%;
-            box-shadow: 5px 5px 0 rgba(26, 77, 140, 0.1);
+        /* 説明文 */
+        .sub-description {
+            font-weight: bold;
+            color: var(--main-navy); /* 【変更】少し濃い色に */
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .detail-text {
             text-align: left;
-            position: relative;
-            overflow: hidden;
-            box-sizing: border-box;
-        }
-
-        .box-header-band {
-            background: var(--primary-navy);
-            color: #fff;
-            padding: 15px;
-            font-weight: bold;
-            font-size: 18px;
-            text-align: center;
-            letter-spacing: 1.5px;
-            border-bottom: 2px solid var(--accent-gold);
-        }
-
-        .box-content {
-            padding: 25px 20px;
-        }
-
-        .check-list {
-            list-style: none;
-            padding: 0;
-            margin: 0 auto;
-            display: table;
-        }
-
-        .check-list li {
-            margin-bottom: 18px;
-            font-weight: bold;
-            color: var(--text-dark);
-            font-size: 17px;
-            display: flex;
-            align-items: center;
-        }
-
-        .check-list li i {
-            color: var(--accent-gold);
-            font-size: 24px;
-            margin-right: 12px;
-            filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.2));
-        }
-
-        .support-text {
-            color: var(--primary-navy);
-            font-weight: bold;
-            font-size: 22px;
-            margin: 30px 0 25px;
-            letter-spacing: 1px;
-            background: linear-gradient(transparent 70%, #fff9c4 70%);
+            font-size: 0.9rem;
+            color: #444;
+            line-height: 1.5;
+            margin-bottom: 20px;
             display: inline-block;
         }
 
-        .btn {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        /* 地図画像のプレースホルダー */
+        .map-container {
             width: 100%;
-            box-sizing: border-box;
-            margin: 15px auto;
-            padding: 18px;
-            border-radius: 6px;
-            text-decoration: none;
-            color: #fff;
-            font-weight: bold;
-            font-size: 22px;
-            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
-            transition: transform 0.1s;
-            border-bottom: 2px solid rgba(0,0,0,0.2);
-        }
-        .btn:active {
-            transform: translateY(3px);
-            box-shadow: none;
-            border-bottom: none;
-        }
-        .btn i {
-            margin-right: 12px;
-            font-size: 26px;
-        }
-        .btn-tel { background: linear-gradient(to bottom, #ff9800, #ef6c00); }
-        .btn-mail { background: linear-gradient(to bottom, #4caf50, #2e7d32); }
-
-        .payment-box {
-            background: #fff;
-            border: 2px solid var(--accent-gold);
-            border-radius: 8px;
-            width: 100%;
-            box-sizing: border-box;
-            margin: 40px auto 0;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .payment-header {
-            background: var(--primary-navy);
-            color: #fff;
-            padding: 12px;
-            font-weight: bold;
-            font-size: 16px;
-            letter-spacing: 1px;
-            text-align: center;
-            border-bottom: 2px solid var(--accent-gold);
-        }
-
-        .payment-methods {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 25px 0;
-            background: linear-gradient(to bottom, #fff, #f9f9f9);
-        }
-
-        .payment-item {
-            flex: 1;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: var(--primary-navy);
-        }
-
-        .payment-label {
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-align: center;
-            display: block;
-        }
-
-        .icon-wrapper {
-            height: 55px;
-            width: 65px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            background: #f0f4f8; 
-            border: 1px solid #dce4eb;
-        }
-        
-        .fa-wallet { color: #d32f2f; font-size: 36px; }
-        .fa-coins { color: #fbc02d; font-size: 24px; }
-        .cash-icon-group { position: relative; }
-        
-        .bank-icon {
-            background: #4caf50;
-            width: 50px;
-            height: 32px;
-            border-radius: 3px;
             position: relative;
-            box-shadow: 0 2px 0 #2e7d32;
-        }
-        .bank-icon::after {
-            content: "";
-            position: absolute;
-            top: 5px; left: 0; right: 0;
-            height: 5px;
-            background: rgba(255,255,255,0.4);
+            margin-top: 20px;
         }
 
-        .divider {
-            width: 1px;
-            height: 60px;
-            background-color: #ddd;
-            border-right: 1px solid #fff;
+        /* 画像がない場合のダミー表示 */
+        .map-placeholder {
+            width: 100%;
+            height: auto;
+            display: block;
+            background-color: #eef1f5; 
+            border: 2px dashed #99a;
+            color: var(--main-navy);
+            padding: 50px 0;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        /* 実際の画像を想定したスタイル（画像準備後に使用） */
+        .map-img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
     </style>
 </head>
 <body>
 
-    <div class="lp-container">
-        
-        <picture>
-          <source srcset="lptate.jpg" media="(max-width: 767px)">
-          
-          <img src="lpyoko.png" 
-               alt="しつこい害虫を即日徹底駆除！" 
-               width="1200" 
-               height="750" 
-               style="width: 100%; height: auto;"
-               fetchpriority="high">
-        </picture>
-        <div class="content">
-            <div class="header-band">
-                <div class="header-text-upper">最短<span class="time-emphasize">10分</span>で</div>
-                <div class="header-text-lower">すぐに駆けつけます！</div>
+    <div class="area-card">
+        <div class="card-header">
+            <div class="header-pref">大阪府・京都府・兵庫県・奈良県</div>
+            <div class="header-sub">近郊エリア 対応</div>
+        </div>
+
+        <div class="card-body">
+            
+            <div class="headline-wrapper">
+                <div class="emphasis-dots">
+                    <span class="dot" style="margin-right: 25px;"></span>
+                    <span class="dot" style="margin-right: 30px;"></span>
+                    <span class="dot" style="margin-right: 20px;"></span>
+                    <span class="dot"></span>
+                </div>
+                
+                <div class="main-headline">
+                    <span class="highlight-text">最短</span><span class="highlight-number">10分</span><span class="suffix">で駆けつけ！</span>
+                </div>
             </div>
 
-            <div class="inner-content">
-                
-                <div class="solid-box">
-                    <div class="box-header-band">安心してお任せください！</div>
-                    <div class="box-content">
-                        <ul class="check-list">
-                            <li><i class="fas fa-check-circle"></i> 深夜料金なし</li>
-                            <li><i class="fas fa-check-circle"></i> 見積り後のキャンセル無料</li>
-                            <li><i class="fas fa-check-circle"></i> 安心の再発保証あり</li>
-                            <li><i class="fas fa-check-circle"></i> 現地調査無料</li>
-                        </ul>
-                    </div>
+            <div class="sub-description">
+                多くの拠点でスタッフが待機しています。
+            </div>
+
+            <div class="detail-text">
+                お客様のお住まいエリアの近くの拠点から緊急出動いたします！
+            </div>
+
+            <div class="map-container">
+                <div class="map-placeholder">
+                    ここに地図画像を配置
                 </div>
-
-                <div class="support-text">24時間365日対応いたします！</div>
-
-                <a href="tel:0123456789" class="btn btn-tel">
-                    <i class="fas fa-phone-alt"></i> 電話でお問合せ
-                </a>
-
-                <a href="#mail" class="btn btn-mail">
-                    <i class="fas fa-envelope"></i> メール相談
-                </a>
-
-                <div class="payment-box">
-                    <div class="payment-header">様々なお支払方法に対応しております</div>
-                    <div class="payment-methods">
-                        
-                        <div class="payment-item">
-                            <span class="payment-label">現金払い</span>
-                            <div class="icon-wrapper cash-icon-group">
-                                <i class="fas fa-wallet"></i>
-                                <i class="fas fa-coins" style="position:absolute; bottom: -5px; right: -8px;"></i>
-                            </div>
-                        </div>
-
-                        <div class="divider"></div>
-
-                        <div class="payment-item">
-                            <span class="payment-label">銀行振込</span>
-                            <div class="icon-wrapper">
-                                <div class="bank-icon"></div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div> 
+            </div>
         </div>
     </div>
 
