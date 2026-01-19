@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3つの安心・お申し込み案内</title>
+<title>3つの安心・お申し込み案内・よくあるご質問</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
     /* =========================================
-       共通・リセットCSS
+       共通・リセットCSS（前半ベース）
        ========================================= */
     * {
         box-sizing: border-box;
@@ -27,13 +27,6 @@
         background-color: #f4f7fa; 
         padding-bottom: 50px;
     }
-
-    /* カラーパレット定義（参考）
-       メインネイビー: #002347
-       サブネイビー: #1a3c5e
-       アクセントゴールド: #c9a063
-       薄いグレー背景: #f4f7fa
-    */
 
     /* =========================================
        セクション1：3つの安心 (Navy Theme)
@@ -110,7 +103,7 @@
         object-fit: cover;
     }
 
-    /* 金色のバッジ（ネイビーと相性が良いのでそのまま維持） */
+    /* 金色のバッジ */
     .badge {
         position: absolute;
         top: -15px;
@@ -181,7 +174,7 @@
     .flow-header {
         text-align: center;
         margin-bottom: 40px;
-        border-bottom: 3px solid #002347; /* 緑からネイビーへ */
+        border-bottom: 3px solid #002347;
         padding-bottom: 10px;
         font-weight: bold;
         font-size: 1.2rem;
@@ -193,13 +186,12 @@
     }
 
     .flow-header .title-sub {
-        color: #c9a063; /* 緑からゴールドへ */
+        color: #c9a063;
         font-size: 1.4rem;
     }
 
     .step-card {
         position: relative;
-        /* 背景を青みのある落ち着いたグレーのグラデーションに */
         background: linear-gradient(to bottom, #f8faff, #ecf1f6);
         border: 2px solid #dce4ec;
         padding: 40px 15px 30px 15px;
@@ -207,7 +199,7 @@
         border-radius: 8px;
     }
 
-    /* 下向き矢印 (After/Before) - 色を調整 */
+    /* 下向き矢印 */
     .step-card::after {
         content: "";
         position: absolute;
@@ -232,7 +224,6 @@
         z-index: 0;
     }
 
-    /* 最後のステップカードの矢印は消す */
     .step-card:last-of-type {
         margin-bottom: 0;
     }
@@ -251,7 +242,6 @@
         line-height: 1;
     }
 
-    /* オレンジをゴールドに変更 */
     .step-text {
         display: block;
         color: #c9a063; 
@@ -312,7 +302,7 @@
     .flow-footer {
         text-align: center;
         margin-top: 40px;
-        color: #002347; /* 赤からネイビーへ */
+        color: #002347;
         font-weight: bold;
         font-size: 1.2rem;
         letter-spacing: 2px;
@@ -325,12 +315,12 @@
         width: 100%;
         max-width: 600px;
         margin: 50px auto 0 auto;
-        border: 3px solid #002347; /* 赤からネイビーへ */
+        border: 3px solid #002347;
         background-color: #fff;
     }
 
     .lp-payment-header {
-        background-color: #002347; /* 赤からネイビーへ */
+        background-color: #002347;
         padding: 15px 0;
         text-align: center;
     }
@@ -340,7 +330,6 @@
         font-size: 24px;
         font-weight: bold;
         letter-spacing: 1px;
-        /* 赤系のシャドウを削除しスッキリと */
         text-shadow: none; 
     }
 
@@ -378,13 +367,12 @@
         box-shadow: 0 2px 5px rgba(0, 35, 71, 0.2);
     }
 
-    /* バッジの色をネイビーとゴールドに変更 */
     .badge-cash {
-        background-color: #1a3c5e; /* 緑からサブネイビーへ */
+        background-color: #1a3c5e;
     }
 
     .badge-bank {
-        background-color: #c9a063; /* 青からゴールドへ */
+        background-color: #c9a063;
     }
 
     .payment-badge svg {
@@ -395,7 +383,109 @@
     }
 
     /* =========================================
-       レスポンシブ対応 (まとめて調整)
+       セクション4：よくあるご質問 (Added Section)
+       ========================================= */
+    :root {
+        --main-color: #65BBE9; /* ロゴやテーマに合わせやすいオレンジ */
+        --bg-color: #fcfcfc;
+        --text-dark: #333;
+    }
+
+    .faq-section {
+        max-width: 700px; /* PCでも横に広がりすぎず読みやすい幅 */
+        margin: 60px auto 0 auto; /* 前のセクションとの間隔調整 */
+    }
+
+    .faq-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    /* アコーディオンの外枠 */
+    .faq-container {
+        display: flex;
+        flex-direction: column; /* 常に縦一列に並べる */
+        gap: 12px;
+    }
+
+    /* 各質問のカード */
+    .faq-item {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        overflow: hidden;
+        border: 1px solid #eee;
+    }
+
+    /* 質問部分（ボタン） */
+    .faq-question {
+        width: 100%;
+        padding: 18px 20px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        background: none;
+        border: none;
+        text-align: left;
+        font-size: 16px;
+        font-weight: bold;
+        color: var(--text-dark);
+        position: relative;
+        transition: background 0.2s;
+        outline: none;
+    }
+
+    .faq-question:hover {
+        background-color: #fff9f0;
+    }
+
+    /* Qアイコン */
+    .faq-question::before {
+        content: "Q";
+        color: var(--main-color);
+        font-size: 20px;
+        margin-right: 15px;
+        font-family: 'Arial Black', sans-serif;
+    }
+
+    /* 矢印アイコン */
+    .faq-question::after {
+        content: "＋";
+        position: absolute;
+        right: 20px;
+        color: #ccc;
+        font-size: 18px;
+        transition: transform 0.3s;
+    }
+
+    .faq-item.open .faq-question::after {
+        transform: rotate(45deg); /* ＋を×に変える演出 */
+        color: var(--main-color);
+    }
+
+    /* 回答部分（隠れている場所） */
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        background-color: #fff;
+    }
+
+    .faq-item.open .faq-answer {
+        max-height: 1000px; /* 十分な高さ */
+    }
+
+    .answer-inner {
+        padding: 0 20px 20px 52px; /* Qの文字位置に合わせる */
+        line-height: 1.8;
+        font-size: 15px;
+        color: #555;
+        border-top: 1px solid #fafafa;
+        padding-top: 15px;
+    }
+
+    /* =========================================
+       レスポンシブ対応 (全体)
        ========================================= */
     @media (max-width: 768px) {
         .cards-container {
@@ -442,6 +532,10 @@
             width: 120px;
             font-size: 15px;
         }
+
+        /* FAQ Mobile */
+        .faq-question { font-size: 15px; padding: 15px; }
+        .answer-inner { padding-left: 45px; font-size: 14px; }
     }
 </style>
 </head>
@@ -594,6 +688,121 @@
         </div>
     </div>
 
+    <div class="faq-section">
+        <div class="faq-header">
+            <h2>よくあるご質問</h2>
+        </div>
+    
+        <div class="faq-container">
+            
+            <div class="faq-item">
+                <button class="faq-question">どのくらいで到着しますか？</button>
+                <div class="faq-answer">
+                    <div class="answer-inner">
+                        最短10分で現場までお伺いさせていただきます。お急ぎの方も気軽にお電話ください。
+                    </div>
+                </div>
+            </div>
+    
+            <div class="faq-item">
+                <button class="faq-question">お支払方法は何がありますか？</button>
+                <div class="faq-answer">
+                    <div class="answer-inner">
+                        現金またはお振込みでお支払い可能です。
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question">作業後に見積もりより高い金額を請求されることはありますか？</button>
+                <div class="faq-answer">
+                    <div class="answer-inner">
+                        いいえ、ございません。作業前に施工内容と料金の詳細を明確にご説明し、ご納得いただいてから作業に入りますので、どうぞご安心ください。
+                    </div>
+                </div>
+            </div>
+    
+            <div class="faq-item">
+                <button class="faq-question">法人の依頼ですが、後日請求書払いは可能ですか？</button>
+                <div class="faq-answer">
+                    <div class="answer-inner">
+                        法人様のご依頼も柔軟に対応しております。後日の請求書払いについても、お電話や現地調査の際にお申し付けいただければ調整可能です。
+                    </div>
+                </div>
+            </div>
+    
+            <div class="faq-item">
+                <button class="faq-question">作業にあたって、こちらで準備することはありますか？</button>
+                <div class="faq-answer">
+                    <div class="answer-inner">
+                        お客様にご準備いただくことは一切ございません。事前の準備から作業後の片付けまで、すべて弊社の専門スタッフが責任を持って行います。
+                    </div>
+                </div>
+            </div>
+    
+            <div class="faq-item">
+                <button class="faq-question">予約のキャンセルはできますか？</button>
+                <div class="faq-answer">
+                    <div class="answer-inner">
+                        可能です。お見積もり内容をしっかりご確認いただいた上で、ご納得いただけない場合は取り掛かる前にキャンセルいただけます。まずは安心してお見積もりをご依頼ください。
+                    </div>
+                </div>
+            </div>
+    
+            <div class="faq-item">
+                <button class="faq-question">どのエリアまで対応していますか？</button>
+                <div class="faq-answer">
+                    <div class="answer-inner">
+                        大阪、兵庫、奈良、和歌山、京都の各府県に対応しております。詳細な訪問時間などは、お電話の際にお伝えいたします。
+                    </div>
+                </div>
+            </div>
+    
+            <div class="faq-item">
+                <button class="faq-question">出張料や見積もり料はいくらですか？</button>
+                <div class="faq-answer">
+                    <div class="answer-inner">
+                        弊社では、出張料およびお見積もり料はすべて「0円」です。お客様にご提示するのは作業料金のみですので、ご安心ください。
+                    </div>
+                </div>
+            </div>
+    
+            <div class="faq-item">
+                <button class="faq-question">予算が決まっているのですが、その範囲内で駆除できますか？</button>
+                <div class="faq-answer">
+                    <div class="answer-inner">
+                        はい、お客様のご予算に合わせて最適なプランをご提案いたします。現地調査の結果を踏まえ、ご予算内で最大限の効果が出せる方法を一緒に検討させていただきます。
+                    </div>
+                </div>
+            </div>
+    
+            <div class="faq-item">
+                <button class="faq-question">他社の見積もりが高額でした。安くできますか？</button>
+                <div class="faq-answer">
+                    <div class="answer-inner">
+                        ぜひご相談ください！地域最安値を目指しておりますので、他社様のお見積もり内容を教えていただければ、それよりも低価格でご案内できるよう最大限努力いたします。
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+
+<script>
+    // FAQ用スクリプト
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const faqItem = button.parentElement;
+
+            // 他の項目を閉じたい場合は以下の3行を有効化（お好みで）
+            /* document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) item.classList.remove('open');
+            }); */
+
+            faqItem.classList.toggle('open');
+        });
+    });
+</script>
+
 </body>
 </html>
-
