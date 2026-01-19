@@ -3,241 +3,387 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水道修理サービスLP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* デザインの基本設定 */
-        :root {
-            --main-color: #65BBE9; /* ロゴやテーマに合わせやすいオレンジ */
-            --bg-color: #fcfcfc;
-            --text-dark: #333;
-        }
-
+        /* 全体のリセットと基本設定 */
         body {
             font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-            background-color: #f4f4f4;
-            color: var(--text-dark);
             margin: 0;
-            padding: 20px 10px;
-        }
-
-        .faq-section {
-            max-width: 700px; /* PCでも横に広がりすぎず読みやすい幅 */
-            margin: 0 auto;
-        }
-
-        .faq-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        /* アコーディオンの外枠 */
-        .faq-container {
+            padding: 0;
+            background-color: #f0f4f8;
             display: flex;
-            flex-direction: column; /* 常に縦一列に並べる */
-            gap: 12px;
+            justify-content: center;
+            min-height: 100vh;
         }
 
-        /* 各質問のカード */
-        .faq-item {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            overflow: hidden;
-            border: 1px solid #eee;
-        }
-
-        /* 質問部分（ボタン） */
-        .faq-question {
+        /* スマートフォン向けレイアウトコンテナ */
+        .lp-container {
             width: 100%;
-            padding: 18px 20px;
+            max-width: 480px; /* スマホ幅を想定 */
+            background: linear-gradient(180deg, #ffffff 0%, #e3f2fd 100%);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            position: relative;
+            padding-bottom: 40px;
+            overflow: hidden;
+        }
+
+        /* 背景の水しぶき（CSSで簡易再現） */
+        .water-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://www.transparenttextures.com/patterns/water.png'); /* 簡易テクスチャ */
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* コンテンツエリア */
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* ヘッダー部分 */
+        .header-top {
+            margin-top: 20px;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        .text-blue {
+            color: #4a90e2;
+            font-size: 28px;
+        }
+        
+        .time-emphasize {
+            font-size: 42px;
+            font-style: italic;
+            margin: 0 5px;
+            position: relative;
+            display: inline-block;
+        }
+        /* 「10分」の上の点々 */
+        .time-emphasize::before {
+            content: "• • •";
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            color: #ff8c00;
+            letter-spacing: 5px;
+            font-style: normal;
+        }
+
+        .text-main-catch {
+            color: #d35400; /* 茶色っぽいオレンジ */
+            font-size: 32px;
+            font-weight: 900;
+            margin-top: 5px;
+            font-style: italic;
+            text-shadow: 1px 1px 0 #fff;
+        }
+
+        /* メインの白いボックスエリア */
+        .white-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px auto 10px;
+            width: 90%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: left;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .box-title {
+            color: #4a90e2;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .check-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .check-list li {
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+            font-size: 15px;
             display: flex;
             align-items: center;
-            cursor: pointer;
-            background: none;
-            border: none;
-            text-align: left;
-            font-size: 16px;
-            font-weight: bold;
-            color: var(--text-dark);
-            position: relative;
-            transition: background 0.2s;
-            outline: none;
         }
 
-        .faq-question:hover {
-            background-color: #fff9f0;
-        }
-
-        /* Qアイコン */
-        .faq-question::before {
-            content: "Q";
-            color: var(--main-color);
+        .check-list li i {
+            color: #4a90e2;
             font-size: 20px;
-            margin-right: 15px;
-            font-family: 'Arial Black', sans-serif;
+            margin-right: 8px;
         }
 
-        /* 矢印アイコン */
-        .faq-question::after {
-            content: "＋";
+        /* スタッフ画像（プレースホルダー） */
+        .staff-img {
             position: absolute;
-            right: 20px;
-            color: #ccc;
-            font-size: 18px;
-            transition: transform 0.3s;
+            bottom: -20px;
+            right: -20px;
+            width: 140px;
+            height: auto;
+            z-index: 2;
         }
 
-        .faq-item.open .faq-question::after {
-            transform: rotate(45deg); /* ＋を×に変える演出 */
-            color: var(--main-color);
+        /* クーポン */
+        .coupon {
+            background: #ffeb3b;
+            color: #4a90e2;
+            position: absolute;
+            right: 10px;
+            bottom: 70px;
+            width: 130px;
+            padding: 10px;
+            transform: rotate(-8deg);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+            text-align: center;
+            font-weight: bold;
+            border-radius: 4px;
+            z-index: 3;
+        }
+        
+        /* クーポンのミシン目風装飾 */
+        .coupon::after {
+            content: "";
+            position: absolute;
+            left: 90px;
+            top: 0;
+            bottom: 0;
+            border-right: 2px dashed #e0e0e0;
+        }
+        
+        .coupon-percent {
+            font-size: 32px;
+            line-height: 1;
+            font-family: Arial, sans-serif;
+            font-weight: 900;
+        }
+        .coupon-small {
+            font-size: 14px;
+        }
+        .coupon-label {
+            background: #2980b9;
+            color: #fff;
+            font-size: 10px;
+            display: inline-block;
+            padding: 2px 5px;
+            margin-top: 5px;
+            transform: rotate(0deg); /* テキストの傾き補正をするならここ */
+        }
+        .coupon-vertical-text {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%) rotate(90deg);
+            font-size: 10px;
+            color: #888;
+            letter-spacing: 1px;
         }
 
-        /* 回答部分（隠れている場所） */
-        .faq-answer {
-            max-height: 0;
+        /* 24時間対応テキスト */
+        .support-text {
+            color: #1a3c6e;
+            font-weight: bold;
+            font-size: 20px;
+            margin: 30px 0 15px;
+        }
+
+        /* CTAボタン共通 */
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 90%;
+            margin: 10px auto;
+            padding: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 22px;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+            transition: transform 0.1s;
+        }
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 rgba(0,0,0,0.2);
+        }
+        .btn i {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        .btn-tel {
+            background: linear-gradient(to bottom, #f39c12, #d35400);
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+        }
+
+        .btn-mail {
+            background: linear-gradient(to bottom, #7acc58, #4caf50);
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+        }
+
+        /* お支払方法セクション（変更箇所） */
+        .payment-box {
+            background: #fff;
+            border: 2px solid #4a90e2;
+            border-radius: 8px;
+            width: 90%;
+            margin: 30px auto 0;
             overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            background-color: #fff;
         }
 
-        .faq-item.open .faq-answer {
-            max-height: 1000px; /* 十分な高さ */
-        }
-
-        .answer-inner {
-            padding: 0 20px 20px 52px; /* Qの文字位置に合わせる */
-            line-height: 1.8;
+        .payment-header {
+            background: #4a90e2;
+            color: #fff;
+            padding: 8px;
+            font-weight: bold;
             font-size: 15px;
-            color: #555;
-            border-top: 1px solid #fafafa;
-            padding-top: 15px;
         }
 
-        /* スマホ向け調整 */
-        @media (max-width: 480px) {
-            .faq-question { font-size: 15px; padding: 15px; }
-            .answer-inner { padding-left: 45px; font-size: 14px; }
+        .payment-methods {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 15px 0;
         }
+
+        .payment-item {
+            flex: 1;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .payment-label {
+            font-size: 12px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: left;
+            width: 80px; /* 位置合わせ用 */
+        }
+
+        /* アイコン画像（FontAwesomeで代用） */
+        .icon-wrapper {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .fa-wallet { color: #e74c3c; font-size: 32px; }
+        .fa-coins { color: #f1c40f; font-size: 20px; }
+        .cash-icon-group { position: relative; }
+        
+        .bank-icon {
+            background: #a5d6a7; /* 通帳っぽい緑 */
+            width: 50px;
+            height: 30px;
+            border-radius: 3px;
+            position: relative;
+            box-shadow: 0 2px 0 #388e3c;
+        }
+        .bank-icon::after {
+            content: "";
+            position: absolute;
+            top: 5px; left: 0; right: 0;
+            height: 5px;
+            background: #e8f5e9;
+        }
+
+        /* 仕切り線 */
+        .divider {
+            width: 1px;
+            height: 50px;
+            background-color: #ddd;
+        }
+
     </style>
 </head>
 <body>
 
-<div class="faq-section">
-    <div class="faq-header">
-        <h2>よくあるご質問</h2>
+    <div class="lp-container">
+        <div class="water-bg"></div>
+
+        <div class="content">
+            <div class="header-top">
+                <div class="text-blue">最短<span class="time-emphasize">10分</span>で</div>
+                <div class="text-main-catch">すぐに駆けつけます！</div>
+            </div>
+
+            <div class="white-box">
+                <div class="box-title">安心してお任せください！</div>
+                <ul class="check-list">
+                    <li><i class="fas fa-check-circle"></i> 深夜料金なし</li>
+                    <li><i class="fas fa-check-circle"></i> 見積り後のキャンセル無料</li>
+                    <li><i class="fas fa-check-circle"></i> 安心の再発保証あり</li>
+                    <li><i class="fas fa-check-circle"></i> 現地調査無料</li>
+                </ul>
+
+                <div class="coupon">
+                    <span class="coupon-percent">20<span class="coupon-small">%</span><br><span class="coupon-small">off</span></span>
+                    <div class="coupon-label">「HP見た」でお得!</div>
+                    <div class="coupon-vertical-text">COUPON</div>
+                </div>
+
+                <img src="https://via.placeholder.com/150x200/cccccc/ffffff?text=Staff+Img" alt="スタッフ画像" class="staff-img">
+            </div>
+
+            <div class="support-text">24時間365日対応いたします！</div>
+
+            <a href="tel:0123456789" class="btn btn-tel">
+                <i class="fas fa-phone-alt"></i> 電話でお問合せ
+            </a>
+
+            <a href="#mail" class="btn btn-mail">
+                <i class="fas fa-envelope"></i> メール相談
+            </a>
+
+            <div class="payment-box">
+                <div class="payment-header">様々なお支払方法に対応しております</div>
+                <div class="payment-methods">
+                    
+                    <div class="payment-item">
+                        <span class="payment-label">現金払い</span>
+                        <div class="icon-wrapper cash-icon-group">
+                            <i class="fas fa-wallet"></i>
+                            <i class="fas fa-coins" style="position:absolute; bottom: -5px; right: -8px;"></i>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="payment-item">
+                        <span class="payment-label">銀行振込</span>
+                        <div class="icon-wrapper">
+                            <div class="bank-icon"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
     </div>
-
-    <div class="faq-container">
-        
-        <div class="faq-item">
-            <button class="faq-question">どのくらいで到着しますか？</button>
-            <div class="faq-answer">
-                <div class="answer-inner">
-                    最短10分で現場までお伺いさせていただきます。お急ぎの方も気軽にお電話ください。
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question">お支払方法は何がありますか？</button>
-            <div class="faq-answer">
-                <div class="answer-inner">
-                    現金またはお振込みでお支払い可能です。
-                </div>
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <button class="faq-question">作業後に見積もりより高い金額を請求されることはありますか？</button>
-            <div class="faq-answer">
-                <div class="answer-inner">
-                    いいえ、ございません。作業前に施工内容と料金の詳細を明確にご説明し、ご納得いただいてから作業に入りますので、どうぞご安心ください。
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question">法人の依頼ですが、後日請求書払いは可能ですか？</button>
-            <div class="faq-answer">
-                <div class="answer-inner">
-                    法人様のご依頼も柔軟に対応しております。後日の請求書払いについても、お電話や現地調査の際にお申し付けいただければ調整可能です。
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question">作業にあたって、こちらで準備することはありますか？</button>
-            <div class="faq-answer">
-                <div class="answer-inner">
-                    お客様にご準備いただくことは一切ございません。事前の準備から作業後の片付けまで、すべて弊社の専門スタッフが責任を持って行います。
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question">予約のキャンセルはできますか？</button>
-            <div class="faq-answer">
-                <div class="answer-inner">
-                    可能です。お見積もり内容をしっかりご確認いただいた上で、ご納得いただけない場合は取り掛かる前にキャンセルいただけます。まずは安心してお見積もりをご依頼ください。
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question">どのエリアまで対応していますか？</button>
-            <div class="faq-answer">
-                <div class="answer-inner">
-                    大阪、兵庫、奈良、和歌山、京都の各府県に対応しております。詳細な訪問時間などは、お電話の際にお伝えいたします。
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question">出張料や見積もり料はいくらですか？</button>
-            <div class="faq-answer">
-                <div class="answer-inner">
-                    弊社では、出張料およびお見積もり料はすべて「0円」です。お客様にご提示するのは作業料金のみですので、ご安心ください。
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question">予算が決まっているのですが、その範囲内で駆除できますか？</button>
-            <div class="faq-answer">
-                <div class="answer-inner">
-                    はい、お客様のご予算に合わせて最適なプランをご提案いたします。現地調査の結果を踏まえ、ご予算内で最大限の効果が出せる方法を一緒に検討させていただきます。
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question">他社の見積もりが高額でした。安くできますか？</button>
-            <div class="faq-answer">
-                <div class="answer-inner">
-                    ぜひご相談ください！地域最安値を目指しておりますので、他社様のお見積もり内容を教えていただければ、それよりも低価格でご案内できるよう最大限努力いたします。
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<script>
-    // クリックイベントの登録
-    document.querySelectorAll('.faq-question').forEach(button => {
-        button.addEventListener('click', () => {
-            const faqItem = button.parentElement;
-
-            // 他の項目を閉じたい場合は以下の3行を有効化（お好みで）
-            /* document.querySelectorAll('.faq-item').forEach(item => {
-                if (item !== faqItem) item.classList.remove('open');
-            }); */
-
-            faqItem.classList.toggle('open');
-        });
-    });
-</script>
 
 </body>
 </html>
+
 
 
