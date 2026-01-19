@@ -9,9 +9,8 @@
         /* カラーパレット定義 */
         :root {
             --primary-navy: #0f2c52; /* 濃紺 */
-            --royal-blue: #1a4d8c; 
             --accent-gold: #c5a059; /* ゴールド */
-            --accent-orange: #ff9800; /* ネイビーの上でも目立つ明るいオレンジ */
+            --accent-orange: #ff9800; /* 明るいオレンジ */
             --text-dark: #1a1a1a;
             --bg-body: #dce4eb; 
             --bg-paper: #fcfcfc;
@@ -47,72 +46,82 @@
         .content {
             position: relative;
             z-index: 1;
-            padding: 30px 25px;
+            /* パディングを調整して、ヘッダー帯が端まで届くようにする */
+            padding: 0 0 30px 0;
             text-align: center;
         }
 
-        /* ▼▼▼ 変更箇所：トップヘッダーもネイビーの帯に変更 ▼▼▼ */
-        .header-top {
-            background: var(--primary-navy); /* 背景をネイビーに */
-            color: #fff; /* 文字を白に */
-            padding: 20px 10px;
-            border-radius: 8px;
+        /* ▼▼▼ 変更箇所：ヘッダーを横幅いっぱいの帯にするスタイル ▼▼▼ */
+        .header-band {
+            background: var(--primary-navy); /* 全面ネイビー */
+            color: #fff;
+            padding: 35px 20px; /* 上下の余白をたっぷり取る */
             margin-bottom: 35px;
-            border: 2px solid var(--accent-gold); /* ゴールドの枠線で統一感 */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            box-sizing: border-box;
+            border-bottom: 4px solid var(--accent-gold); /* 下にゴールドのラインで引き締め */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
         .header-text-upper {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
             letter-spacing: 1px;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            opacity: 0.9;
         }
 
         .header-text-lower {
-            font-size: 28px;
+            font-size: 30px;
             font-weight: 900;
             font-style: italic;
             color: #fff;
-            text-shadow: 2px 2px 0 var(--accent-orange); /* オレンジの影で強調 */
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.2;
         }
         
         .time-emphasize {
-            font-size: 42px;
+            font-size: 46px;
             font-style: italic;
             margin: 0 5px;
             position: relative;
             display: inline-block;
-            color: var(--accent-orange); /* ネイビーの上で映えるオレンジ */
+            color: var(--accent-orange);
             font-family: 'Arial Black', sans-serif;
-            -webkit-text-stroke: 1px #fff; /* 白い縁取り */
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+            -webkit-text-stroke: 1px #fff;
         }
         /* 「10分」の上の点々 */
         .time-emphasize::before {
             content: "• • •";
             position: absolute;
-            top: -20px;
+            top: -22px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 18px;
-            color: #fff; /* 白い点に変更 */
-            letter-spacing: 5px;
+            color: #fff;
+            letter-spacing: 6px;
             font-style: normal;
         }
         /* ▲▲▲ 変更箇所ここまで ▲▲▲ */
 
-        /* 安心ポイントボックス（前回変更分） */
+        /* コンテンツ部分のインナーラッパー（左右の余白確保用） */
+        .inner-content {
+            padding: 0 25px;
+        }
+
+        /* 安心ポイントボックス */
         .solid-box {
             background: #fff;
             border: 2px solid var(--primary-navy);
             border-radius: 8px;
             margin: 0 auto 35px;
-            width: 100%; /* 横幅いっぱいに合わせるため調整 */
-            box-sizing: border-box;
+            width: 100%;
             box-shadow: 5px 5px 0 rgba(26, 77, 140, 0.1);
             text-align: left;
             position: relative;
             overflow: hidden;
+            box-sizing: border-box;
         }
 
         .box-header-band {
@@ -167,7 +176,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 100%; /* コンテナ幅に合わせる */
+            width: 100%;
             box-sizing: border-box;
             margin: 15px auto;
             padding: 18px;
@@ -196,7 +205,7 @@
             background: #fff;
             border: 2px solid var(--accent-gold);
             border-radius: 8px;
-            width: 100%; /* 幅調整 */
+            width: 100%;
             box-sizing: border-box;
             margin: 40px auto 0;
             overflow: hidden;
@@ -283,59 +292,62 @@
 
     <div class="lp-container">
         <div class="content">
-            <div class="header-top">
+            <div class="header-band">
                 <div class="header-text-upper">最短<span class="time-emphasize">10分</span>で</div>
                 <div class="header-text-lower">すぐに駆けつけます！</div>
             </div>
 
-            <div class="solid-box">
-                <div class="box-header-band">安心してお任せください！</div>
-                <div class="box-content">
-                    <ul class="check-list">
-                        <li><i class="fas fa-check-circle"></i> 深夜料金なし</li>
-                        <li><i class="fas fa-check-circle"></i> 見積り後のキャンセル無料</li>
-                        <li><i class="fas fa-check-circle"></i> 安心の再発保証あり</li>
-                        <li><i class="fas fa-check-circle"></i> 現地調査無料</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="support-text">24時間365日対応いたします！</div>
-
-            <a href="tel:0123456789" class="btn btn-tel">
-                <i class="fas fa-phone-alt"></i> 電話でお問合せ
-            </a>
-
-            <a href="#mail" class="btn btn-mail">
-                <i class="fas fa-envelope"></i> メール相談
-            </a>
-
-            <div class="payment-box">
-                <div class="payment-header">様々なお支払方法に対応しております</div>
-                <div class="payment-methods">
-                    
-                    <div class="payment-item">
-                        <span class="payment-label">現金払い</span>
-                        <div class="icon-wrapper cash-icon-group">
-                            <i class="fas fa-wallet"></i>
-                            <i class="fas fa-coins" style="position:absolute; bottom: -5px; right: -8px;"></i>
-                        </div>
+            <div class="inner-content">
+                
+                <div class="solid-box">
+                    <div class="box-header-band">安心してお任せください！</div>
+                    <div class="box-content">
+                        <ul class="check-list">
+                            <li><i class="fas fa-check-circle"></i> 深夜料金なし</li>
+                            <li><i class="fas fa-check-circle"></i> 見積り後のキャンセル無料</li>
+                            <li><i class="fas fa-check-circle"></i> 安心の再発保証あり</li>
+                            <li><i class="fas fa-check-circle"></i> 現地調査無料</li>
+                        </ul>
                     </div>
-
-                    <div class="divider"></div>
-
-                    <div class="payment-item">
-                        <span class="payment-label">銀行振込</span>
-                        <div class="icon-wrapper">
-                            <div class="bank-icon"></div>
-                        </div>
-                    </div>
-
                 </div>
-            </div>
 
-        </div>
+                <div class="support-text">24時間365日対応いたします！</div>
+
+                <a href="tel:0123456789" class="btn btn-tel">
+                    <i class="fas fa-phone-alt"></i> 電話でお問合せ
+                </a>
+
+                <a href="#mail" class="btn btn-mail">
+                    <i class="fas fa-envelope"></i> メール相談
+                </a>
+
+                <div class="payment-box">
+                    <div class="payment-header">様々なお支払方法に対応しております</div>
+                    <div class="payment-methods">
+                        
+                        <div class="payment-item">
+                            <span class="payment-label">現金払い</span>
+                            <div class="icon-wrapper cash-icon-group">
+                                <i class="fas fa-wallet"></i>
+                                <i class="fas fa-coins" style="position:absolute; bottom: -5px; right: -8px;"></i>
+                            </div>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div class="payment-item">
+                            <span class="payment-label">銀行振込</span>
+                            <div class="icon-wrapper">
+                                <div class="bank-icon"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div> </div>
     </div>
 
 </body>
 </html>
+
