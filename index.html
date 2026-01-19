@@ -15,7 +15,7 @@
             font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
             color: #333;
             background-color: #fff;
-            padding-bottom: 150px; /* フッター分の余白 */
+            padding-bottom: 50px;
         }
         * { box-sizing: border-box; }
 
@@ -26,7 +26,7 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 40px 20px;
-            background-color: #fff; /* 背景白 */
+            background-color: #fff;
             text-align: center;
         }
 
@@ -38,15 +38,15 @@
             display: inline-block;
             font-size: 16px;
             font-weight: bold;
-            color: #0088ea; /* 水色 */
-            border-bottom: 3px solid #0088ea; /* 下線 */
+            color: #0088ea;
+            border-bottom: 3px solid #0088ea;
             padding-bottom: 2px;
             margin-bottom: 10px;
         }
         .reason-main-title {
             font-size: 26px;
             font-weight: 900;
-            color: #0056b3; /* 濃い青 */
+            color: #0056b3;
             margin: 0;
             line-height: 1.4;
         }
@@ -60,7 +60,7 @@
             font-weight: 500;
         }
         .text-highlight {
-            color: #0099e6; /* 水色強調 */
+            color: #0099e6;
             font-weight: 900;
         }
 
@@ -76,7 +76,7 @@
         .comp-box {
             flex: 1;
             border-radius: 12px;
-            padding: 20px 10px 0 10px; /* 下のpaddingは0にして帯をくっつける */
+            padding: 20px 10px 0 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -99,9 +99,9 @@
         
         /* --- 右：弊社（指定業者） --- */
         .box-ours {
-            border: 4px solid #0056b3; /* 太い青枠 */
+            border: 4px solid #0056b3;
             box-shadow: 0 5px 15px rgba(0,86,179,0.1);
-            transform: scale(1.02); /* 少し大きく */
+            transform: scale(1.02);
             z-index: 1;
         }
         .box-title-ours {
@@ -112,12 +112,11 @@
             font-size: 15px;
             position: relative;
         }
-        /* 王冠アイコン（簡易的な点装飾として再現） */
         .crown-mark {
             display: block;
             width: 20px;
             height: 10px;
-            background-color: #ffd700; /* 金色 */
+            background-color: #ffd700;
             margin: 0 auto 5px auto;
             clip-path: polygon(0% 100%, 25% 0%, 50% 100%, 75% 0%, 100% 100%);
         }
@@ -150,14 +149,13 @@
             margin: 0 2px;
         }
         
-        /* 仲介業者（黒い四角） */
         .middle-agent-box {
             background-color: #333;
             color: #fff;
             padding: 8px 4px;
             border-radius: 4px;
             font-size: 10px;
-            writing-mode: vertical-rl; /* 縦書き */
+            writing-mode: vertical-rl;
             text-orientation: upright;
             letter-spacing: 2px;
             height: 80px;
@@ -166,7 +164,6 @@
             justify-content: center;
         }
         
-        /* 点線ボックス（中抜き） */
         .dashed-box {
             border: 2px dashed #ccc;
             width: 30px;
@@ -174,14 +171,20 @@
             border-radius: 4px;
         }
 
-        /* --- 下部帯エリア --- */
+        /* --- 下部帯エリア（修正箇所） --- */
         .bottom-banner {
-            width: calc(100% + 20px); /* 親のpaddingを無視して広げる */
+            width: calc(100% + 20px);
             margin-left: -10px;
             margin-right: -10px;
-            margin-top: auto; /* 下に寄せる */
+            margin-top: auto;
             padding: 15px 5px;
             text-align: center;
+            
+            /* 【修正】中身を強制的に縦並びにする設定 */
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            justify-content: center;
         }
         
         /* 左の下部帯 */
@@ -194,22 +197,21 @@
             font-size: 13px;
             font-weight: bold;
             margin-bottom: 10px;
-            display: block;
+            display: block; /* ブロック要素化 */
         }
 
         /* 右の下部帯 */
         .banner-ours {
-            background-color: #0056b3; /* 濃い青 */
+            background-color: #0056b3;
             color: #fff;
         }
         .banner-title-o {
             font-size: 14px;
             font-weight: bold;
             margin-bottom: 10px;
-            display: block;
+            display: inline-block; /* 下線のためにインラインブロック */
             border-bottom: 1px solid rgba(255,255,255,0.3);
             padding-bottom: 5px;
-            display: inline-block;
         }
 
         /* --- チェックリスト --- */
@@ -227,135 +229,16 @@
             display: flex;
             align-items: center;
         }
-        /* 左のチェック（黒） */
         .check-item.g::before {
             content: "✔";
             margin-right: 5px;
             font-size: 14px;
         }
-        /* 右のチェック（赤/オレンジ） */
         .check-item.o::before {
             content: "✔";
             margin-right: 5px;
             font-size: 16px;
-            color: #ff5722; /* 画像では赤っぽいチェック */
-        }
-
-
-        /* =========================================
-           固定フッター (画像のCTAデザイン再現)
-           ========================================= */
-        .fixed-footer-cta {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 9999;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
-            font-family: sans-serif;
-        }
-
-        /* 上部の紺色の帯 */
-        .cta-top-bar {
-            background-color: #002e5d; /* 濃紺 */
-            color: #fff;
-            text-align: center;
-            padding: 8px 0;
-            font-size: 14px;
-            font-weight: bold;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-        .cta-price-tag {
-            background-color: #ffeb3b; /* 黄色 */
-            color: #d32f2f; /* 赤文字 */
-            padding: 2px 8px;
-            font-weight: 900;
-            border-radius: 2px;
-        }
-
-        /* メインの緑ボタンエリア */
-        .cta-main-area {
-            background-color: #004080; /* 下地（紺色） */
-            padding: 10px 15px 20px; /* iPhoneの下部バー考慮 */
-            position: relative;
-            text-align: center;
-        }
-
-        /* 緑色のボタン */
-        .cta-green-btn {
-            display: block;
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            background: linear-gradient(to bottom, #4caf50, #2e7d32); /* 緑グラデ */
-            border-radius: 10px;
-            text-decoration: none;
-            color: #fff;
-            padding: 10px 10px 10px 70px; /* バッジ分の左余白 */
-            position: relative;
-            box-shadow: 0 4px 0 #1b5e20; /* 立体感 */
-            transition: transform 0.1s;
-        }
-        .cta-green-btn:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0 #1b5e20;
-        }
-
-        /* ボタン内のテキスト */
-        .btn-sub-text {
-            font-size: 11px;
-            margin-bottom: 2px;
-            opacity: 0.9;
-        }
-        .btn-main-text {
-            font-size: 24px;
-            font-weight: 900;
-            line-height: 1;
-        }
-
-        /* 左側の黄色い丸バッジ */
-        .cta-badge-circle {
-            position: absolute;
-            top: 50%;
-            left: 10px; /* ボタン内の左端 */
-            transform: translateY(-50%);
-            width: 65px;
-            height: 65px;
-            background-color: #ffeb3b; /* 黄色 */
-            border: 2px dashed #f44336; /* 赤い点線 */
-            border-radius: 50%;
-            color: #d32f2f;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            line-height: 1.1;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            z-index: 10;
-        }
-        .badge-top { font-size: 9px; color: #333; }
-        .badge-main { font-size: 18px; font-weight: 900; }
-        .badge-main span { font-size: 12px; }
-
-        /* 上へ戻るボタン（画像右下にあるやつ） */
-        .scroll-top-mini {
-            position: absolute;
-            top: -50px;
-            right: 15px;
-            width: 40px;
-            height: 40px;
-            background-color: #004080;
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            cursor: pointer;
+            color: #ff5722;
         }
 
         @media (max-width: 480px) {
@@ -365,8 +248,6 @@
             .check-item { font-size: 11px; }
             .banner-ours { font-size: 12px; }
             .box-title-general, .box-title-ours { font-size: 12px; }
-            
-            /* スマホでアイコンや文字が崩れないよう調整 */
             .d-icon { font-size: 20px; }
             .middle-agent-box { font-size: 9px; width: 20px; padding: 0; }
             .dashed-box { width: 20px; }
@@ -446,26 +327,6 @@
             </div>
         </div>
     </section>
-
-    <div class="fixed-footer-cta">
-        <a href="#" class="scroll-top-mini" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">
-            <i class="fas fa-chevron-up"></i>
-        </a>
-
-        <div class="cta-top-bar">
-            Webからは24時間受付中！ <span class="cta-price-tag">出張費/見積り 0円</span>
-        </div>
-        <div class="cta-main-area">
-            <a href="#contact-form" class="cta-green-btn">
-                <div class="cta-badge-circle">
-                    <span class="badge-top">「HP見た」<br>で</span>
-                    <span class="badge-main">20<span style="font-size:10px">%</span><br>OFF</span>
-                </div>
-                <div class="btn-sub-text">現在はお電話での受付時間外です。<br>フォームよりお問い合わせください。</div>
-                <div class="btn-main-text">メールでお問い合わせ</div>
-            </a>
-        </div>
-    </div>
 
 </body>
 </html>
