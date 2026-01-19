@@ -326,7 +326,16 @@
         .check-item.o::before { content: "✔"; margin-right: 8px; font-size: 20px; color: #ff5722; background: #fff; border-radius: 50%; width: 24px; height: 24px; display: flex; justify-content: center; align-items: center; }
 
         @media (max-width: 768px) {
-            .comparison-wrapper { flex-direction: column; gap: 20px; }
+            /* ▼▼▼ 修正箇所：column（縦）からrow（横）に変更し、隙間を狭く調整 ▼▼▼ */
+            .comparison-wrapper { flex-direction: row; gap: 8px; } 
+            .comp-box { padding: 15px 5px 0 5px; } /* 横並び用に内側の余白を縮小 */
+            .box-title-general, .box-title-ours { font-size: 14px; margin-bottom: 15px; } /* タイトル文字サイズ調整 */
+            .d-icon { font-size: 24px; } /* アイコンサイズ調整 */
+            .middle-agent-box { padding: 10px 5px; font-size: 10px; height: 100px; } /* 図の調整 */
+            .dashed-box { height: 100px; }
+            .check-item { font-size: 11px; } /* 下部リストの文字サイズ調整 */
+            /* ▲▲▲ 修正箇所ここまで ▲▲▲ */
+
             .box-ours { transform: none; border: 3px solid #0056b3; }
             .reason-main-title { font-size: 24px; }
         }
@@ -1746,5 +1755,3 @@
     </script>
 </body>
 </html>
-
-
