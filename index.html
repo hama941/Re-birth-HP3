@@ -8,17 +8,16 @@
     <style>
         /* カラーパレット定義 */
         :root {
-            --primary-navy: #0f2c52; /* 非常に濃いネイビー */
+            --primary-navy: #0f2c52; /* 濃紺 */
             --royal-blue: #1a4d8c; 
-            --accent-gold: #c5a059; /* 上品なゴールド */
-            --accent-orange: #e65100;
+            --accent-gold: #c5a059; /* ゴールド */
+            --accent-orange: #ff9800; /* ネイビーの上でも目立つ明るいオレンジ */
             --text-dark: #1a1a1a;
             --bg-body: #dce4eb; 
             --bg-paper: #fcfcfc;
             --solid-shadow: 0 10px 25px rgba(15, 44, 82, 0.15);
         }
 
-        /* 全体のリセットと基本設定 */
         body {
             font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
             margin: 0;
@@ -31,7 +30,6 @@
             box-sizing: border-box;
         }
 
-        /* スマートフォン向けレイアウトコンテナ */
         .lp-container {
             width: 100%;
             max-width: 480px;
@@ -46,7 +44,6 @@
             border-bottom: 8px solid var(--primary-navy);
         }
 
-        /* コンテンツエリア */
         .content {
             position: relative;
             z-index: 1;
@@ -54,65 +51,70 @@
             text-align: center;
         }
 
-        /* ヘッダー部分 */
+        /* ▼▼▼ 変更箇所：トップヘッダーもネイビーの帯に変更 ▼▼▼ */
         .header-top {
+            background: var(--primary-navy); /* 背景をネイビーに */
+            color: #fff; /* 文字を白に */
+            padding: 20px 10px;
+            border-radius: 8px;
             margin-bottom: 35px;
-            font-weight: bold;
-            line-height: 1.4;
+            border: 2px solid var(--accent-gold); /* ゴールドの枠線で統一感 */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        .text-blue {
-            color: var(--primary-navy);
-            font-size: 28px;
+        .header-text-upper {
+            font-size: 24px;
+            font-weight: bold;
             letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .header-text-lower {
+            font-size: 28px;
+            font-weight: 900;
+            font-style: italic;
+            color: #fff;
+            text-shadow: 2px 2px 0 var(--accent-orange); /* オレンジの影で強調 */
         }
         
         .time-emphasize {
-            font-size: 46px;
+            font-size: 42px;
             font-style: italic;
             margin: 0 5px;
             position: relative;
             display: inline-block;
-            color: var(--accent-orange);
+            color: var(--accent-orange); /* ネイビーの上で映えるオレンジ */
             font-family: 'Arial Black', sans-serif;
-            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
-            -webkit-text-stroke: 1px #fff;
+            -webkit-text-stroke: 1px #fff; /* 白い縁取り */
         }
+        /* 「10分」の上の点々 */
         .time-emphasize::before {
             content: "• • •";
             position: absolute;
-            top: -25px;
+            top: -20px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 18px;
-            color: var(--accent-orange);
+            color: #fff; /* 白い点に変更 */
             letter-spacing: 5px;
             font-style: normal;
         }
+        /* ▲▲▲ 変更箇所ここまで ▲▲▲ */
 
-        .text-main-catch {
-            color: var(--accent-orange);
-            font-size: 34px;
-            font-weight: 900;
-            margin-top: 10px;
-            font-style: italic;
-            text-shadow: 1px 1px 0 #fff, 2px 2px 3px rgba(0,0,0,0.1);
-        }
-
-        /* ▼▼▼ 変更箇所：メインのボックス（安心ポイント） ▼▼▼ */
+        /* 安心ポイントボックス（前回変更分） */
         .solid-box {
             background: #fff;
             border: 2px solid var(--primary-navy);
             border-radius: 8px;
             margin: 0 auto 35px;
-            width: 92%;
+            width: 100%; /* 横幅いっぱいに合わせるため調整 */
+            box-sizing: border-box;
             box-shadow: 5px 5px 0 rgba(26, 77, 140, 0.1);
             text-align: left;
             position: relative;
-            overflow: hidden; /* 帯を角丸に収めるため */
+            overflow: hidden;
         }
 
-        /* ネイビーの帯にしたヘッダー */
         .box-header-band {
             background: var(--primary-navy);
             color: #fff;
@@ -121,13 +123,12 @@
             font-size: 18px;
             text-align: center;
             letter-spacing: 1.5px;
-            border-bottom: 2px solid var(--accent-gold); /* ゴールドのラインで高級感 */
+            border-bottom: 2px solid var(--accent-gold);
         }
 
         .box-content {
             padding: 25px 20px;
         }
-        /* ▲▲▲ 変更箇所ここまで ▲▲▲ */
 
         .check-list {
             list-style: none;
@@ -152,7 +153,6 @@
             filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.2));
         }
 
-        /* 24時間対応テキスト */
         .support-text {
             color: var(--primary-navy);
             font-weight: bold;
@@ -163,12 +163,12 @@
             display: inline-block;
         }
 
-        /* CTAボタン */
         .btn {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 94%;
+            width: 100%; /* コンテナ幅に合わせる */
+            box-sizing: border-box;
             margin: 15px auto;
             padding: 18px;
             border-radius: 6px;
@@ -192,12 +192,12 @@
         .btn-tel { background: linear-gradient(to bottom, #ff9800, #ef6c00); }
         .btn-mail { background: linear-gradient(to bottom, #4caf50, #2e7d32); }
 
-        /* お支払方法セクション */
         .payment-box {
             background: #fff;
             border: 2px solid var(--accent-gold);
             border-radius: 8px;
-            width: 94%;
+            width: 100%; /* 幅調整 */
+            box-sizing: border-box;
             margin: 40px auto 0;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -284,8 +284,8 @@
     <div class="lp-container">
         <div class="content">
             <div class="header-top">
-                <div class="text-blue">最短<span class="time-emphasize">10分</span>で</div>
-                <div class="text-main-catch">すぐに駆けつけます！</div>
+                <div class="header-text-upper">最短<span class="time-emphasize">10分</span>で</div>
+                <div class="header-text-lower">すぐに駆けつけます！</div>
             </div>
 
             <div class="solid-box">
