@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>水道修理サービスLP</title>
+    <title>水道修理サービスLP - 重厚感デザイン</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* カラーパレット定義（少し落ち着いたトーンに変更） */
+        /* カラーパレット定義（重厚感のあるダークトーン） */
         :root {
-            --primary-blue: #347ab7; /* 少し落ち着いた青 */
-            --secondary-blue: #1a3c6e;
-            --accent-orange: #d35400;
-            --accent-yellow: #f0ad4e;
-            --accent-green: #5cb85c;
-            --text-dark: #444;
-            --bg-color-main: #f0f4f8; /* ベースの背景色 */
-            --pattern-color: rgba(52, 122, 183, 0.15); /* パターンの色 */
-            --glass-bg: rgba(255, 255, 255, 0.9); /* 透明度を少し下げてマットに */
-            --glass-border: rgba(255, 255, 255, 0.8);
-            --glass-shadow: 0 4px 20px rgba(0,0,0,0.08); /* 影も少し柔らかく */
+            --primary-navy: #001f3f; /* 深いネイビー */
+            --secondary-navy: #001122; /* さらに暗いネイビー */
+            --accent-bronze: #b87333; /* ブロンズ（銅色） */
+            --accent-gold: #c5a35b; /* 深みのあるゴールド */
+            --accent-dark-green: #2e7d32; /* 深いフォレストグリーン */
+            --text-light: #ecf0f1; /* オフホワイトのテキスト */
+            --text-gold: #e6cca0; /* 淡いゴールドのテキスト */
+            --bg-texture-base: #1a1a2e; /* 背景のベース色 */
+            --box-bg-dark: #242b3b; /* マットなダークボックス背景 */
+            --heavy-shadow: 0 15px 35px rgba(0,0,0,0.6); /* 深く濃い影 */
+            --metal-border: linear-gradient(135deg, #b87333, #e6cca0, #b87333); /* 金属質な枠線グラデ */
         }
 
         /* 全体のリセットと基本設定 */
@@ -26,8 +26,8 @@
             font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
             margin: 0;
             padding: 20px 0;
-            /* 外側の背景：落ち着いた単色グレーブルー */
-            background-color: #e8eff5;
+            /* 外側の背景：落ち着いたダークグレー */
+            background-color: #121212;
             display: flex;
             justify-content: center;
             min-height: 100vh;
@@ -39,98 +39,107 @@
         .lp-container {
             width: 100%;
             max-width: 480px;
-            background-color: var(--bg-color-main);
-            /* CSSで微細なドットパターンを作成（これがテクスチャになります） */
-            background-image: radial-gradient(var(--pattern-color) 1px, transparent 1px);
-            background-size: 10px 10px; /* ドットの間隔 */
+            background-color: var(--bg-texture-base);
+            /* CSSでダークな石目調/コンクリート調のテクスチャを作成 */
+            background-image: 
+                radial-gradient(transparent 0%, rgba(0,0,0,0.4) 100%), /* 全体の陰影 */
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E"); /* ノイズテクスチャ */
             
-            border-radius: 20px;
-            /* 影を少しフラット気味にしてモダンに */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1), inset 0 0 20px rgba(255,255,255,0.5);
+            border-radius: 12px; /* 角の丸みを抑えて堅牢に */
+            /* 影を深く、濃くして重量感を出す */
+            box-shadow: var(--heavy-shadow);
             position: relative;
             padding-bottom: 40px;
             overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.5); /* 薄い枠線を足して高級感 */
+            /* 枠線を太く、金属的な質感のグラデーションに */
+            border: 3px solid transparent;
+            background-clip: padding-box, border-box;
+            background-origin: padding-box, border-box;
+            background-image: linear-gradient(var(--bg-texture-base), var(--bg-texture-base)), var(--metal-border);
         }
-
-        /* 以前の波紋背景は削除しました */
 
         /* コンテンツエリア */
         .content {
             position: relative;
             z-index: 1;
-            padding: 30px 25px;
+            padding: 35px 25px;
             text-align: center;
+            color: var(--text-light);
         }
 
         /* ヘッダー部分 */
         .header-top {
-            margin-bottom: 35px;
+            margin-bottom: 40px;
             font-weight: bold;
             line-height: 1.4;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* テキストの影を強く */
         }
 
         .text-blue {
-            color: var(--secondary-blue);
+            color: var(--text-light);
             font-size: 28px;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px; /* 文字間を広げて堂々と */
         }
         
         .time-emphasize {
-            font-size: 44px;
+            font-size: 48px;
             font-style: italic;
-            margin: 0 5px;
+            margin: 0 8px;
             position: relative;
             display: inline-block;
-            color: var(--accent-orange);
+            color: var(--accent-bronze); /* ブロンズ色に変更 */
             font-family: 'Arial Black', sans-serif;
+            text-shadow: 1px 1px 0 #000, 3px 3px 5px rgba(0,0,0,0.3); /* 金属的な立体感 */
         }
         /* 「10分」の上の点々 */
         .time-emphasize::before {
             content: "• • •";
             position: absolute;
-            top: -22px;
+            top: -25px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 18px;
-            color: var(--accent-orange);
-            letter-spacing: 4px;
+            font-size: 20px;
+            color: var(--accent-bronze);
+            letter-spacing: 5px;
             font-style: normal;
         }
 
         .text-main-catch {
-            color: var(--accent-orange);
-            font-size: 32px;
+            color: var(--accent-bronze);
+            font-size: 34px;
             font-weight: 900;
-            margin-top: 12px;
+            margin-top: 15px;
             font-style: italic;
-            /* テキストの影を調整して、背景から浮き上がらせる */
-            text-shadow: 2px 2px 0px #fff, 3px 3px 5px rgba(0,0,0,0.1);
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 0px #000, 4px 4px 8px rgba(0,0,0,0.4);
         }
 
-        /* メインの白いボックスエリア（グラスモーフィズム継続） */
-        .white-box {
-            background: var(--glass-bg);
-            backdrop-filter: blur(5px); /* ぼかしを少し弱めてマットな質感に */
-            -webkit-backdrop-filter: blur(5px);
-            border: 2px solid var(--glass-border); /* 枠線を少し太く */
-            border-radius: 16px;
+        /* メインのボックスエリア（マットで重厚なデザイン） */
+        .dark-box {
+            background: var(--box-bg-dark); /* 不透明なダーク背景 */
+            /* 金属的な枠線 */
+            border: 2px solid;
+            border-image: var(--metal-border) 1;
+            border-radius: 10px; /* 角を少し残す */
             padding: 35px 25px;
-            margin: 0 auto 35px;
+            margin: 0 auto 40px;
             width: 92%;
-            box-shadow: var(--glass-shadow);
+            box-shadow: var(--heavy-shadow), inset 0 0 20px rgba(0,0,0,0.3); /* 内側にも影を入れて奥行きを */
             text-align: left;
             position: relative;
             box-sizing: border-box;
         }
 
         .box-title {
-            color: var(--primary-blue);
+            color: var(--text-gold); /* 淡いゴールドで見出し */
             font-weight: bold;
-            font-size: 21px;
-            margin-bottom: 25px;
+            font-size: 22px;
+            margin-bottom: 30px;
             text-align: center;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            border-bottom: 1px solid rgba(255,255,255,0.1); /* 下線を引いて区切る */
+            padding-bottom: 15px;
         }
 
         .check-list {
@@ -141,98 +150,107 @@
         }
 
         .check-list li {
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             font-weight: bold;
-            color: var(--text-dark);
-            font-size: 17px;
+            color: var(--text-light);
+            font-size: 18px;
             display: flex;
             align-items: center;
+            letter-spacing: 0.5px;
         }
 
         .check-list li i {
-            color: var(--primary-blue);
-            font-size: 24px;
-            margin-right: 14px;
-            /* アイコンにも少しリッチな影 */
-            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.1));
+            color: var(--accent-bronze); /* アイコンもブロンズ色 */
+            font-size: 26px;
+            margin-right: 15px;
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
         }
 
         /* 24時間対応テキスト */
         .support-text {
-            color: var(--secondary-blue); /* 背景が明るくなったので濃い青に戻す */
+            color: var(--text-light);
             font-weight: bold;
-            font-size: 22px;
-            margin: 30px 0 25px;
-            text-shadow: 1px 1px 1px rgba(255,255,255,1);
-            letter-spacing: 1px;
+            font-size: 24px;
+            margin: 30px 0 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+            letter-spacing: 1.5px;
         }
 
-        /* CTAボタン共通 */
+        /* CTAボタン共通（堅牢なデザイン） */
         .btn {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 92%;
-            margin: 14px auto;
-            padding: 18px;
-            border-radius: 50px; /* 丸みを強くしてモダンに */
+            width: 94%;
+            margin: 16px auto;
+            padding: 20px;
+            border-radius: 8px; /* 丸みを抑えて堅牢に */
             text-decoration: none;
             color: #fff;
             font-weight: bold;
             font-size: 22px;
-            /* グラデーションを少しマットに */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255,255,255,0.3);
-        }
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            letter-spacing: 1px;
+            box-shadow: 0 6px 0 rgba(0,0,0,0.4), 0 15px 25px rgba(0,0,0,0.3); /* 厚みのある影 */
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
         .btn:active {
-            transform: translateY(1px);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            transform: translateY(4px); /* 押したときの沈み込みを大きく */
+            box-shadow: 0 2px 0 rgba(0,0,0,0.4), 0 5px 10px rgba(0,0,0,0.3);
         }
         .btn i {
-            margin-right: 12px;
-            font-size: 26px;
+            margin-right: 15px;
+            font-size: 28px;
         }
 
         .btn-tel {
-            background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange));
+            /* 深みのあるブロンズグラデーション */
+            background: linear-gradient(to bottom, #b87333, #8c5423);
+            border-color: #d4965e;
         }
 
         .btn-mail {
-            background: linear-gradient(135deg, #66bb6a, var(--accent-green));
+            /* 深みのあるグリーングラデーション */
+            background: linear-gradient(to bottom, #2e7d32, #1b5e20);
+            border-color: #4fa753;
         }
 
-        /* お支払方法セクション */
+        /* お支払方法セクション（重厚デザイン） */
         .payment-box {
-            background: var(--glass-bg);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border: 2px solid var(--primary-blue);
-            border-radius: 16px;
-            width: 92%;
-            margin: 40px auto 0;
+            @extend .dark-box; /* .dark-boxのスタイルを継承 */
+            background: var(--box-bg-dark);
+            /* 枠線を金属的に */
+            border: 3px solid transparent;
+            background-clip: padding-box, border-box;
+            background-origin: padding-box, border-box;
+            background-image: linear-gradient(var(--box-bg-dark), var(--box-bg-dark)), var(--metal-border);
+            
+            border-radius: 12px;
+            width: 94%;
+            margin: 50px auto 0;
             overflow: hidden;
-            box-shadow: var(--glass-shadow);
+            padding: 0; /* ヘッダーのためにパディングリセット */
+            box-shadow: var(--heavy-shadow);
         }
 
         .payment-header {
-            background: var(--primary-blue);
-            color: #fff;
-            padding: 14px;
+            /* ヘッダーも金属的なグラデーション */
+            background: linear-gradient(135deg, var(--primary-navy), var(--secondary-navy));
+            color: var(--text-gold);
+            padding: 18px;
             font-weight: bold;
-            font-size: 16px;
-            letter-spacing: 1px;
+            font-size: 17px;
+            letter-spacing: 1.5px;
+            border-bottom: 2px solid #b87333;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
         .payment-methods {
             display: flex;
             justify-content: space-around;
             align-items: center;
-            padding: 25px 0;
+            padding: 30px 0;
         }
 
         .payment-item {
@@ -241,55 +259,59 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: var(--text-dark);
+            color: var(--text-light);
         }
 
         .payment-label {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             text-align: center;
             display: block;
+            letter-spacing: 1px;
         }
 
         /* アイコン画像 */
         .icon-wrapper {
-            height: 55px;
-            width: 65px;
+            height: 60px;
+            width: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #fff; /* 背景を白くしてクリーンに */
-            border-radius: 12px;
+            background: rgba(255,255,255,0.05); /* わずかに明るい背景 */
+            border-radius: 8px;
             padding: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* わずかな立体感 */
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3); /* 内側の影で凹み感を出す */
         }
         
-        .fa-wallet { color: #e74c3c; font-size: 38px; }
-        .fa-coins { color: #f1c40f; font-size: 26px; }
+        .fa-wallet { color: #c0392b; font-size: 40px; filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));}
+        .fa-coins { color: var(--accent-gold); font-size: 28px; filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));}
         .cash-icon-group { position: relative; }
         
         .bank-icon {
-            background: linear-gradient(to bottom, #a5d6a7, #81c784);
-            width: 54px;
-            height: 34px;
+            background: linear-gradient(to bottom, var(--accent-dark-green), #1b5e20);
+            width: 56px;
+            height: 36px;
             border-radius: 4px;
             position: relative;
-            box-shadow: 0 3px 0 #388e3c;
+            box-shadow: 0 4px 0 #144618, 2px 2px 5px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.2);
         }
         .bank-icon::after {
             content: "";
             position: absolute;
             top: 6px; left: 0; right: 0;
             height: 6px;
-            background: rgba(255,255,255,0.6);
+            background: rgba(255,255,255,0.3);
         }
 
         /* 仕切り線 */
         .divider {
-            width: 1px;
-            height: 60px;
-            background-color: rgba(0,0,0,0.1);
+            width: 2px;
+            height: 70px;
+            /* 金属的な輝きのある仕切り線 */
+            background: linear-gradient(to bottom, transparent, var(--accent-bronze), transparent);
         }
 
     </style>
@@ -303,7 +325,7 @@
                 <div class="text-main-catch">すぐに駆けつけます！</div>
             </div>
 
-            <div class="white-box">
+            <div class="dark-box">
                 <div class="box-title">安心してお任せください！</div>
                 <ul class="check-list">
                     <li><i class="fas fa-check-circle"></i> 深夜料金なし</li>
