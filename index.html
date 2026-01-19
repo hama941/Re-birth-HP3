@@ -3,21 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>水道修理サービスLP - 明るい重厚感</title>
+    <title>水道修理サービスLP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* カラーパレット定義（明るいけれど重みのある配色） */
+        /* カラーパレット定義 */
         :root {
-            --primary-navy: #0f2c52; /* 非常に濃いネイビー（引き締め色） */
-            --royal-blue: #1a4d8c; /* 高貴なロイヤルブルー */
+            --primary-navy: #0f2c52; /* 非常に濃いネイビー */
+            --royal-blue: #1a4d8c; 
             --accent-gold: #c5a059; /* 上品なゴールド */
-            --accent-orange: #e65100; /* 深みのあるオレンジ */
-            --accent-green: #2e7d32; /* 信頼感のあるグリーン */
-            --text-dark: #1a1a1a; /* 濃いグレーのテキスト */
-            --bg-body: #dce4eb; /* 外側の背景（落ち着いたブルーグレー） */
-            --bg-paper: #fcfcfc; /* 本体の背景（高級紙のような白） */
-            --solid-shadow: 0 10px 25px rgba(15, 44, 82, 0.15); /* 透明感のある濃い影 */
-            --gold-border: 2px solid #d4af37; /* ゴールドの枠線 */
+            --accent-orange: #e65100;
+            --text-dark: #1a1a1a;
+            --bg-body: #dce4eb; 
+            --bg-paper: #fcfcfc;
+            --solid-shadow: 0 10px 25px rgba(15, 44, 82, 0.15);
         }
 
         /* 全体のリセットと基本設定 */
@@ -25,7 +23,7 @@
             font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
             margin: 0;
             padding: 20px 0;
-            background-color: var(--bg-body); /* 外側は少し落ち着かせて、本体を際立たせる */
+            background-color: var(--bg-body);
             display: flex;
             justify-content: center;
             min-height: 100vh;
@@ -38,15 +36,12 @@
             width: 100%;
             max-width: 480px;
             background-color: var(--bg-paper);
-            /* 高級紙のような微細なノイズテクスチャ */
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
-            
-            border-radius: 10px; /* 角を少しシャープに */
+            border-radius: 10px;
             box-shadow: var(--solid-shadow);
             position: relative;
             padding-bottom: 40px;
             overflow: hidden;
-            /* 上部にゴールドのアクセントライン */
             border-top: 8px solid var(--primary-navy);
             border-bottom: 8px solid var(--primary-navy);
         }
@@ -80,11 +75,9 @@
             display: inline-block;
             color: var(--accent-orange);
             font-family: 'Arial Black', sans-serif;
-            /* 白い縁取りでくっきりさせる */
             text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
             -webkit-text-stroke: 1px #fff;
         }
-        /* 「10分」の上の点々 */
         .time-emphasize::before {
             content: "• • •";
             position: absolute;
@@ -106,31 +99,35 @@
             text-shadow: 1px 1px 0 #fff, 2px 2px 3px rgba(0,0,0,0.1);
         }
 
-        /* メインのボックスエリア */
+        /* ▼▼▼ 変更箇所：メインのボックス（安心ポイント） ▼▼▼ */
         .solid-box {
             background: #fff;
-            border: 2px solid var(--primary-navy); /* 濃紺の太い枠線で引き締め */
+            border: 2px solid var(--primary-navy);
             border-radius: 8px;
-            padding: 30px 20px;
             margin: 0 auto 35px;
             width: 92%;
-            /* くっきりした影で浮き上がらせる */
             box-shadow: 5px 5px 0 rgba(26, 77, 140, 0.1);
             text-align: left;
             position: relative;
-            box-sizing: border-box;
+            overflow: hidden; /* 帯を角丸に収めるため */
         }
 
-        .box-title {
-            color: var(--royal-blue);
+        /* ネイビーの帯にしたヘッダー */
+        .box-header-band {
+            background: var(--primary-navy);
+            color: #fff;
+            padding: 15px;
             font-weight: bold;
-            font-size: 20px;
-            margin-bottom: 25px;
+            font-size: 18px;
             text-align: center;
             letter-spacing: 1.5px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
+            border-bottom: 2px solid var(--accent-gold); /* ゴールドのラインで高級感 */
         }
+
+        .box-content {
+            padding: 25px 20px;
+        }
+        /* ▲▲▲ 変更箇所ここまで ▲▲▲ */
 
         .check-list {
             list-style: none;
@@ -149,7 +146,7 @@
         }
 
         .check-list li i {
-            color: var(--accent-gold); /* ゴールドのチェックマーク */
+            color: var(--accent-gold);
             font-size: 24px;
             margin-right: 12px;
             filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.2));
@@ -162,11 +159,11 @@
             font-size: 22px;
             margin: 30px 0 25px;
             letter-spacing: 1px;
-            background: linear-gradient(transparent 70%, #fff9c4 70%); /* 黄色のマーカー風 */
+            background: linear-gradient(transparent 70%, #fff9c4 70%);
             display: inline-block;
         }
 
-        /* CTAボタン共通 */
+        /* CTAボタン */
         .btn {
             display: flex;
             justify-content: center;
@@ -174,12 +171,12 @@
             width: 94%;
             margin: 15px auto;
             padding: 18px;
-            border-radius: 6px; /* 角丸を小さくして堅牢に */
+            border-radius: 6px;
             text-decoration: none;
             color: #fff;
             font-weight: bold;
             font-size: 22px;
-            box-shadow: 0 4px 0 rgba(0,0,0,0.2); /* 立体的なボタン */
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
             transition: transform 0.1s;
             border-bottom: 2px solid rgba(0,0,0,0.2);
         }
@@ -192,21 +189,13 @@
             margin-right: 12px;
             font-size: 26px;
         }
-
-        .btn-tel {
-            /* 明るいが深みのあるオレンジグラデ */
-            background: linear-gradient(to bottom, #ff9800, #ef6c00);
-        }
-
-        .btn-mail {
-            /* 落ち着いたグリーングラデ */
-            background: linear-gradient(to bottom, #4caf50, #2e7d32);
-        }
+        .btn-tel { background: linear-gradient(to bottom, #ff9800, #ef6c00); }
+        .btn-mail { background: linear-gradient(to bottom, #4caf50, #2e7d32); }
 
         /* お支払方法セクション */
         .payment-box {
             background: #fff;
-            border: 2px solid var(--accent-gold); /* ゴールドの枠線 */
+            border: 2px solid var(--accent-gold);
             border-radius: 8px;
             width: 94%;
             margin: 40px auto 0;
@@ -215,7 +204,7 @@
         }
 
         .payment-header {
-            background: var(--primary-navy); /* ヘッダーは濃紺で引き締め */
+            background: var(--primary-navy);
             color: #fff;
             padding: 12px;
             font-weight: bold;
@@ -250,7 +239,6 @@
             display: block;
         }
 
-        /* アイコン画像 */
         .icon-wrapper {
             height: 55px;
             width: 65px;
@@ -258,7 +246,6 @@
             align-items: center;
             justify-content: center;
             border-radius: 8px;
-            /* アイコン背景を薄いグレーにして上品に */
             background: #f0f4f8; 
             border: 1px solid #dce4eb;
         }
@@ -283,12 +270,11 @@
             background: rgba(255,255,255,0.4);
         }
 
-        /* 仕切り線 */
         .divider {
             width: 1px;
             height: 60px;
             background-color: #ddd;
-            border-right: 1px solid #fff; /* 立体的に見せる */
+            border-right: 1px solid #fff;
         }
 
     </style>
@@ -303,13 +289,15 @@
             </div>
 
             <div class="solid-box">
-                <div class="box-title">安心してお任せください！</div>
-                <ul class="check-list">
-                    <li><i class="fas fa-check-circle"></i> 深夜料金なし</li>
-                    <li><i class="fas fa-check-circle"></i> 見積り後のキャンセル無料</li>
-                    <li><i class="fas fa-check-circle"></i> 安心の再発保証あり</li>
-                    <li><i class="fas fa-check-circle"></i> 現地調査無料</li>
-                </ul>
+                <div class="box-header-band">安心してお任せください！</div>
+                <div class="box-content">
+                    <ul class="check-list">
+                        <li><i class="fas fa-check-circle"></i> 深夜料金なし</li>
+                        <li><i class="fas fa-check-circle"></i> 見積り後のキャンセル無料</li>
+                        <li><i class="fas fa-check-circle"></i> 安心の再発保証あり</li>
+                        <li><i class="fas fa-check-circle"></i> 現地調査無料</li>
+                    </ul>
+                </div>
             </div>
 
             <div class="support-text">24時間365日対応いたします！</div>
