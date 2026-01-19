@@ -91,7 +91,7 @@
         .white-box {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
-            padding: 20px;
+            padding: 30px 20px; /* 上下のパディングを少し増やしました */
             margin: 25px auto 10px;
             width: 90%;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
@@ -103,95 +103,31 @@
         .box-title {
             color: #4a90e2;
             font-weight: bold;
-            font-size: 18px;
-            margin-bottom: 15px;
+            font-size: 20px; /* 少し大きくしました */
+            margin-bottom: 20px;
             text-align: center;
         }
 
         .check-list {
             list-style: none;
             padding: 0;
-            margin: 0;
+            margin: 0 auto; /* 中央寄せ */
+            display: table; /* 中央寄せのためにtable表示に */
         }
 
         .check-list li {
-            margin-bottom: 10px;
+            margin-bottom: 12px; /* 間隔を少し広げました */
             font-weight: bold;
             color: #333;
-            font-size: 15px;
+            font-size: 16px; /* 少し大きくしました */
             display: flex;
             align-items: center;
         }
 
         .check-list li i {
             color: #4a90e2;
-            font-size: 20px;
-            margin-right: 8px;
-        }
-
-        /* スタッフ画像（プレースホルダー） */
-        .staff-img {
-            position: absolute;
-            bottom: -20px;
-            right: -20px;
-            width: 140px;
-            height: auto;
-            z-index: 2;
-        }
-
-        /* クーポン */
-        .coupon {
-            background: #ffeb3b;
-            color: #4a90e2;
-            position: absolute;
-            right: 10px;
-            bottom: 70px;
-            width: 130px;
-            padding: 10px;
-            transform: rotate(-8deg);
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-            text-align: center;
-            font-weight: bold;
-            border-radius: 4px;
-            z-index: 3;
-        }
-        
-        /* クーポンのミシン目風装飾 */
-        .coupon::after {
-            content: "";
-            position: absolute;
-            left: 90px;
-            top: 0;
-            bottom: 0;
-            border-right: 2px dashed #e0e0e0;
-        }
-        
-        .coupon-percent {
-            font-size: 32px;
-            line-height: 1;
-            font-family: Arial, sans-serif;
-            font-weight: 900;
-        }
-        .coupon-small {
-            font-size: 14px;
-        }
-        .coupon-label {
-            background: #2980b9;
-            color: #fff;
-            font-size: 10px;
-            display: inline-block;
-            padding: 2px 5px;
-            margin-top: 5px;
-            transform: rotate(0deg); /* テキストの傾き補正をするならここ */
-        }
-        .coupon-vertical-text {
-            position: absolute;
-            right: 8px;
-            top: 50%;
-            transform: translateY(-50%) rotate(90deg);
-            font-size: 10px;
-            color: #888;
-            letter-spacing: 1px;
+            font-size: 22px;
+            margin-right: 10px;
         }
 
         /* 24時間対応テキスト */
@@ -237,7 +173,7 @@
             text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
         }
 
-        /* お支払方法セクション（変更箇所） */
+        /* お支払方法セクション */
         .payment-box {
             background: #fff;
             border: 2px solid #4a90e2;
@@ -335,15 +271,7 @@
                     <li><i class="fas fa-check-circle"></i> 安心の再発保証あり</li>
                     <li><i class="fas fa-check-circle"></i> 現地調査無料</li>
                 </ul>
-
-                <div class="coupon">
-                    <span class="coupon-percent">20<span class="coupon-small">%</span><br><span class="coupon-small">off</span></span>
-                    <div class="coupon-label">「HP見た」でお得!</div>
-                    <div class="coupon-vertical-text">COUPON</div>
                 </div>
-
-                <img src="https://via.placeholder.com/150x200/cccccc/ffffff?text=Staff+Img" alt="スタッフ画像" class="staff-img">
-            </div>
 
             <div class="support-text">24時間365日対応いたします！</div>
 
@@ -384,6 +312,5 @@
 
 </body>
 </html>
-
 
 
