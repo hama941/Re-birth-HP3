@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>害獣トラブル119 - 水道修理サービスLP（統合版）</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* 全体のリセット */
-        body { margin: 0; font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif; }
-
+        /* =========================================
+           1. ヘッダーエリアのスタイル
+           ========================================= */
+        /* ヘッダーコンテナ（Flexbox内での配置用に width: 100% を追加） */
         .header-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 10px 20px;
             background: #fff;
-            /* 下線をネイビーに変更 */
             border-bottom: 3px solid #003366;
             max-width: 1200px;
-            margin: 0 auto;
+            width: 100%; /* Flexアイテムとして縮小しないよう指定 */
+            box-sizing: border-box; /* パディングを含める */
+            margin: 0 auto; /* 画面幅が広い時に中央寄せ */
         }
 
         .logo-section {
@@ -24,11 +29,9 @@
             flex-direction: column;
         }
 
-        /* ★キャッチコピーの変更箇所★ */
-        /* ネイビー背景に白文字で「公的・公式」な雰囲気に */
         .catch-copy {
-            background: #003366; /* ネイビー */
-            color: #fff;         /* 白文字 */
+            background: #003366;
+            color: #fff;
             font-weight: bold;
             font-size: 13px;
             padding: 2px 12px;
@@ -38,7 +41,7 @@
             margin-bottom: 4px;
             position: relative;
         }
-        /* 吹き出しの三角部分もネイビーに合わせる */
+
         .catch-copy::after {
             content: "";
             position: absolute;
@@ -46,18 +49,16 @@
             left: 15px;
             border-left: 5px solid transparent;
             border-right: 5px solid transparent;
-            border-top: 5px solid #003366; /* ここを変更 */
+            border-top: 5px solid #003366;
         }
 
-        /* ★タイトルデザインの変更箇所★ */
         .main-title {
             font-size: 32px;
             font-weight: 900;
-            color: #003366; /* メインカラーを深いネイビーに */
+            color: #003366;
             margin: 0;
             font-style: italic;
             letter-spacing: -1px;
-            /* 影を少し控えめにして知的さを出す */
             text-shadow: 
                 1px 1px 0 #e0e0e0, 
                 2px 2px 0 #ccc; 
@@ -66,80 +67,909 @@
             align-items: baseline;
         }
         
-        /* 「119」の強調 */
         .main-title span {
             font-size: 38px;
-            /* ネイビーと相性の良い「赤」または「ゴールド」がおすすめ */
-            /* ここでは緊急性を残すため「赤」を採用（ネイビーとの対比で映えます） */
             color: #c90000; 
             margin-left: 4px;
-            /* 文字の縁取りは白にして読みやすく */
             -webkit-text-stroke: 1px #fff;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
 
-        /* 右側：ボタンエリア */
         .contact-buttons {
             display: flex;
             gap: 10px;
         }
-        .btn {
+        /* ヘッダー用ボタン（クラス名の競合を避けるため特異性を維持） */
+        .contact-buttons .btn {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             width: 75px;
             height: 75px;
-            border-radius: 6px; /* 丸みを少し抑えてシャープに */
+            border-radius: 6px;
             text-decoration: none;
             color: #fff;
             font-size: 13px;
             font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 立体感を追加 */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             transition: opacity 0.3s;
+            margin: 0; /* body側のbtnスタイルのマージンをリセット */
+            padding: 0; /* body側のbtnスタイルのパディングをリセット */
+            border-bottom: none; /* body側のbtnスタイルのボーダーをリセット */
         }
-        .btn:hover {
+        .contact-buttons .btn:hover {
             opacity: 0.8;
         }
 
-        /* ボタン色はネイビーに合う色に調整 */
-        /* 電話：ネイビーの補色である「オレンジ/ゴールド」系で目立たせる */
-        .btn-tel { background-color: #f39c12; }
-        
-        /* メール：落ち着いたグリーン、もしくは少し青みのあるグリーン */
-        .btn-mail { background-color: #27ae60; }
+        .contact-buttons .btn-tel { background-color: #f39c12; background-image: none; }
+        .contact-buttons .btn-mail { background-color: #27ae60; background-image: none; }
 
-        .btn i { font-size: 28px; margin-bottom: 2px; }
+        .contact-buttons .btn i { font-size: 28px; margin-bottom: 2px; margin-right: 0; }
 
         @media (max-width: 600px) {
             .main-title { font-size: 22px; }
             .main-title span { font-size: 26px; }
-            .btn { width: 65px; height: 65px; font-size: 11px; }
+            .contact-buttons .btn { width: 65px; height: 65px; font-size: 11px; }
+        }
+
+        /* =========================================
+           2. メインLP（コンテンツエリア）のスタイル
+           ========================================= */
+        :root {
+            /* 前半用変数 */
+            --primary-navy: #0f2c52; /* 濃紺 */
+            --accent-gold: #c5a059; /* ゴールド */
+            --accent-orange: #ff9800; /* 明るいオレンジ */
+            --text-dark: #1a1a1a;
+            --bg-body: #dce4eb; 
+            --bg-paper: #fcfcfc;
+            --solid-shadow: 0 10px 25px rgba(15, 44, 82, 0.15);
+
+            /* 後半（エリアセクション）用変数 */
+            --area-main-navy: #1a2a45;
+            --area-accent-yellow: #ffcc00;
+            --area-accent-orange: #ff6600;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            margin: 0;
+            padding: 0 0 40px 0; /* ヘッダーを上部につけるため上paddingは0、下は余白確保 */
+            background-color: var(--bg-body);
+            display: flex;
+            flex-direction: column; /* 縦並びにする */
+            align-items: center;    /* 中央揃え */
+            min-height: 100vh;
+            box-sizing: border-box;
+            gap: 30px; /* 各セクションの間隔 */
+            color: #333;
+        }
+
+        /* --- 前半：メインコンテナ --- */
+        .lp-container {
+            width: 100%;
+            max-width: 480px;
+            background-color: var(--bg-paper);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+            border-radius: 10px;
+            box-shadow: var(--solid-shadow);
+            position: relative;
+            padding-bottom: 40px;
+            overflow: hidden;
+            border-top: 8px solid var(--primary-navy);
+            border-bottom: 8px solid var(--primary-navy);
+            box-sizing: border-box;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 0 0 30px 0;
+            text-align: center;
+        }
+
+        .header-band {
+            background: var(--primary-navy);
+            color: #fff;
+            padding: 35px 20px;
+            margin-bottom: 35px;
+            width: 100%;
+            box-sizing: border-box;
+            border-bottom: 4px solid var(--accent-gold);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .header-text-upper {
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .header-text-lower {
+            font-size: 30px;
+            font-weight: 900;
+            font-style: italic;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+        
+        .time-emphasize {
+            font-size: 46px;
+            font-style: italic;
+            margin: 0 5px;
+            position: relative;
+            display: inline-block;
+            color: var(--accent-orange);
+            font-family: 'Arial Black', sans-serif;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+            -webkit-text-stroke: 1px #fff;
+        }
+        .time-emphasize::before {
+            content: "• • •";
+            position: absolute;
+            top: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 18px;
+            color: #fff;
+            letter-spacing: 6px;
+            font-style: normal;
+        }
+
+        .inner-content {
+            padding: 0 25px;
+        }
+
+        .solid-box {
+            background: #fff;
+            border: 2px solid var(--primary-navy);
+            border-radius: 8px;
+            margin: 0 auto 35px;
+            width: 100%;
+            box-shadow: 5px 5px 0 rgba(26, 77, 140, 0.1);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .box-header-band {
+            background: var(--primary-navy);
+            color: #fff;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+            letter-spacing: 1.5px;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        .box-content {
+            padding: 25px 20px;
+        }
+
+        /* --- 共通のチェックリスト(上部ボックス用) --- */
+        .check-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            display: table;
+        }
+
+        .check-list li {
+            margin-bottom: 18px;
+            font-weight: bold;
+            color: var(--text-dark);
+            font-size: 17px;
+            display: flex;
+            align-items: center;
+        }
+
+        .check-list li i {
+            color: var(--accent-gold);
+            font-size: 24px;
+            margin-right: 12px;
+            filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.2));
+        }
+
+        .support-text {
+            color: var(--primary-navy);
+            font-weight: bold;
+            font-size: 22px;
+            margin: 30px 0 25px;
+            letter-spacing: 1px;
+            background: linear-gradient(transparent 70%, #fff9c4 70%);
+            display: inline-block;
+        }
+
+        /* メインコンテンツ用ボタン（ヘッダーと区別するためにクラス指定を詳細化または直下のスタイル） */
+        .inner-content .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+            margin: 15px auto;
+            padding: 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 22px;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+            transition: transform 0.1s;
+            border-bottom: 2px solid rgba(0,0,0,0.2);
+        }
+        .inner-content .btn:active {
+            transform: translateY(3px);
+            box-shadow: none;
+            border-bottom: none;
+        }
+        .inner-content .btn i {
+            margin-right: 12px;
+            font-size: 26px;
+        }
+        .inner-content .btn-tel { background: linear-gradient(to bottom, #ff9800, #ef6c00); }
+        .inner-content .btn-mail { background: linear-gradient(to bottom, #4caf50, #2e7d32); }
+
+        .payment-box {
+            background: #fff;
+            border: 2px solid var(--accent-gold);
+            border-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            margin: 40px auto 0;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .payment-header {
+            background: var(--primary-navy);
+            color: #fff;
+            padding: 12px;
+            font-weight: bold;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 25px 0;
+            background: linear-gradient(to bottom, #fff, #f9f9f9);
+        }
+
+        .payment-item {
+            flex: 1;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--primary-navy);
+        }
+
+        .payment-label {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+            display: block;
+        }
+
+        .icon-wrapper {
+            height: 55px;
+            width: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: #f0f4f8; 
+            border: 1px solid #dce4eb;
+        }
+        
+        .fa-wallet { color: #d32f2f; font-size: 36px; }
+        .fa-coins { color: #fbc02d; font-size: 24px; }
+        .cash-icon-group { position: relative; }
+        
+        .bank-icon {
+            background: #4caf50;
+            width: 50px;
+            height: 32px;
+            border-radius: 3px;
+            position: relative;
+            box-shadow: 0 2px 0 #2e7d32;
+        }
+        .bank-icon::after {
+            content: "";
+            position: absolute;
+            top: 5px; left: 0; right: 0;
+            height: 5px;
+            background: rgba(255,255,255,0.4);
+        }
+
+        .divider {
+            width: 1px;
+            height: 60px;
+            background-color: #ddd;
+            border-right: 1px solid #fff;
+        }
+
+        /* =========================================
+           後半：エリア対応セクションのスタイル
+           ========================================= */
+        .area-card {
+            width: 100%;
+            max-width: 480px;
+            background: #fff;
+            border: 3px solid var(--area-main-navy);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(26, 42, 69, 0.15);
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .card-header {
+            background-color: var(--area-main-navy);
+            color: var(--area-accent-yellow);
+            padding: 15px 5px;
+            font-weight: bold;
+        }
+
+        .header-pref {
+            font-size: clamp(1rem, 4.5vw, 1.4rem);
+            margin: 0;
+            line-height: 1.4;
+            white-space: nowrap; /* 1行固定 */
+        }
+
+        .header-sub {
+            font-size: 1.5rem;
+            margin-top: 5px;
+            line-height: 1.2;
+        }
+
+        .card-body {
+            padding: 20px 15px;
+            background-image: linear-gradient(transparent 50%, rgba(26, 42, 69, 0.03) 50%);
+            background-size: 100% 4px; 
+        }
+
+        .headline-wrapper {
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .emphasis-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-bottom: -15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--area-accent-orange);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .main-headline {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--area-main-navy);
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .highlight-text {
+             color: var(--area-main-navy);
+             font-style: italic;
+             font-size: 2rem;
+             margin-right: 5px;
+        }
+
+        .highlight-number {
+            color: var(--area-main-navy);
+            font-size: 2.8rem;
+            font-family: Arial, sans-serif;
+            font-weight: 900;
+            margin: 0 2px;
+            letter-spacing: -2px;
+        }
+
+        .suffix {
+            font-size: 1.2rem;
+            font-style: normal;
+            color: #222;
+            font-weight: bold;
+        }
+
+        .sub-description {
+            font-weight: bold;
+            color: var(--area-main-navy);
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .detail-text {
+            text-align: left;
+            font-size: 0.9rem;
+            color: #444;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .map-container {
+            width: 100%;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: auto;
+            display: block;
+            background-color: #eef1f5; 
+            border: 2px dashed #99a;
+            color: var(--area-main-navy);
+            padding: 50px 0;
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-sizing: border-box;
+        }
+
+        /* =========================================
+           「安く・早く実現できる理由」セクション
+           （統合版: 幅を上のカードに合わせて調整）
+           ========================================= */
+        .reason-section {
+            width: 100%;
+            max-width: 480px; /* 他のカードと幅を統一 */
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(26, 42, 69, 0.15); /* 影を追加して統一感 */
+            box-sizing: border-box;
+        }
+
+        /* --- 見出しエリア --- */
+        .header-area {
+            margin-bottom: 30px;
+        }
+        .reason-sub-title {
+            display: inline-block;
+            font-size: 16px;
+            font-weight: bold;
+            color: #0088ea;
+            border-bottom: 3px solid #0088ea;
+            padding-bottom: 2px;
+            margin-bottom: 10px;
+        }
+        .reason-main-title {
+            font-size: 26px;
+            font-weight: 900;
+            color: #0056b3;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* --- 説明文エリア --- */
+        .reason-description {
+            font-size: 15px;
+            line-height: 1.8;
+            text-align: left;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+        .text-highlight {
+            color: #0099e6;
+            font-weight: 900;
+        }
+
+        /* --- 比較図ラッパー --- */
+        .comparison-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            align-items: stretch;
+        }
+
+        /* --- ボックス共通 --- */
+        .comp-box {
+            flex: 1;
+            border-radius: 12px;
+            padding: 20px 10px 0 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* --- 左：一般的な業者 --- */
+        .box-general {
+            border: 2px solid #e0e0e0;
+        }
+        .box-title-general {
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            font-size: 14px;
+        }
+        
+        /* --- 右：弊社（指定業者） --- */
+        .box-ours {
+            border: 4px solid #0056b3;
+            box-shadow: 0 5px 15px rgba(0,86,179,0.1);
+            transform: scale(1.02);
+            z-index: 1;
+        }
+        .box-title-ours {
+            font-weight: bold;
+            color: #0056b3;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            font-size: 15px;
+            position: relative;
+        }
+        .crown-mark {
+            display: block;
+            width: 20px;
+            height: 10px;
+            background-color: #ffd700;
+            margin: 0 auto 5px auto;
+            clip-path: polygon(0% 100%, 25% 0%, 50% 100%, 75% 0%, 100% 100%);
+        }
+
+        /* --- 図解エリア --- */
+        .diagram-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #333;
+        }
+        .d-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 40px;
+        }
+        .d-icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .d-arrow {
+            color: #0099e6;
+            font-size: 16px;
+            margin: 0 2px;
+        }
+        
+        .middle-agent-box {
+            background-color: #333;
+            color: #fff;
+            padding: 8px 4px;
+            border-radius: 4px;
+            font-size: 10px;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            letter-spacing: 2px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .dashed-box {
+            border: 2px dashed #ccc;
+            width: 30px;
+            height: 80px;
+            border-radius: 4px;
+        }
+
+        /* --- 下部帯エリア --- */
+        .bottom-banner {
+            width: calc(100% + 20px);
+            margin-left: -10px;
+            margin-right: -10px;
+            margin-top: auto;
+            padding: 15px 5px;
+            text-align: center;
+            /* 強制的に縦並びにする設定 */
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* 左の下部帯 */
+        .banner-general {
+            background-color: #f2f2f2;
+            color: #333;
+            border-top: 1px solid #e0e0e0;
+        }
+        .banner-title-g {
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block; 
+        }
+
+        /* 右の下部帯 */
+        .banner-ours {
+            background-color: #0056b3;
+            color: #fff;
+        }
+        .banner-title-o {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: inline-block; 
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 5px;
+        }
+
+        /* --- チェックリスト (後半セクション用: クラス名を特化) --- */
+        /* コンテナ内での競合を避けるため、ネストして指定 */
+        .reason-section .check-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: inline-block;
+            text-align: left;
+        }
+        
+        .check-item {
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .check-item.g::before {
+            content: "✔";
+            margin-right: 5px;
+            font-size: 14px;
+        }
+        .check-item.o::before {
+            content: "✔";
+            margin-right: 5px;
+            font-size: 16px;
+            color: #ff5722;
+        }
+
+        @media (max-width: 480px) {
+            .reason-main-title { font-size: 22px; }
+            .comparison-wrapper { gap: 8px; }
+            .comp-box { padding: 15px 5px 0 5px; }
+            .check-item { font-size: 11px; }
+            .banner-ours { font-size: 12px; }
+            .box-title-general, .box-title-ours { font-size: 12px; }
+            .d-icon { font-size: 20px; }
+            .middle-agent-box { font-size: 9px; width: 20px; padding: 0; }
+            .dashed-box { width: 20px; }
+            .d-arrow { font-size: 12px; margin: 0; }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-<header class="header-container">
-    <div class="logo-section">
-        <div class="catch-copy">関西全域対応！！</div>
-        <h1 class="main-title">
-            害獣トラブル<span>119</span>
-        </h1>
+    <header class="header-container">
+        <div class="logo-section">
+            <div class="catch-copy">関西全域対応！！</div>
+            <h1 class="main-title">
+                害獣トラブル<span>119</span>
+            </h1>
+        </div>
+
+        <div class="contact-buttons">
+            <a href="tel:0120-000-000" class="btn btn-tel">
+                <i class="fas fa-phone-alt"></i>
+                <span>電話</span>
+            </a>
+            <a href="#contact" class="btn btn-mail">
+                <i class="fas fa-envelope"></i>
+                <span>メール</span>
+            </a>
+        </div>
+    </header>
+
+    <div class="lp-container">
+        <picture>
+          <source srcset="lptate.jpg" media="(max-width: 767px)">
+          <img src="lpyoko.png" 
+               alt="しつこい害虫を即日徹底駆除！" 
+               width="1200" 
+               height="750" 
+               style="width: 100%; height: auto;"
+               fetchpriority="high">
+        </picture>
+        <div class="content">
+            <div class="header-band">
+                <div class="header-text-upper">最短<span class="time-emphasize">10分</span>で</div>
+                <div class="header-text-lower">すぐに駆けつけます！</div>
+            </div>
+
+            <div class="inner-content">
+                
+                <div class="solid-box">
+                    <div class="box-header-band">安心してお任せください！</div>
+                    <div class="box-content">
+                        <ul class="check-list">
+                            <li><i class="fas fa-check-circle"></i> 深夜料金なし</li>
+                            <li><i class="fas fa-check-circle"></i> 見積り後のキャンセル無料</li>
+                            <li><i class="fas fa-check-circle"></i> 安心の再発保証あり</li>
+                            <li><i class="fas fa-check-circle"></i> 現地調査無料</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="support-text">24時間365日対応いたします！</div>
+
+                <a href="tel:0123456789" class="btn btn-tel">
+                    <i class="fas fa-phone-alt"></i> 電話でお問合せ
+                </a>
+
+                <a href="#mail" class="btn btn-mail">
+                    <i class="fas fa-envelope"></i> メール相談
+                </a>
+
+                <div class="payment-box">
+                    <div class="payment-header">様々なお支払方法に対応しております</div>
+                    <div class="payment-methods">
+                        
+                        <div class="payment-item">
+                            <span class="payment-label">現金払い</span>
+                            <div class="icon-wrapper cash-icon-group">
+                                <i class="fas fa-wallet"></i>
+                                <i class="fas fa-coins" style="position:absolute; bottom: -5px; right: -8px;"></i>
+                            </div>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div class="payment-item">
+                            <span class="payment-label">銀行振込</span>
+                            <div class="icon-wrapper">
+                                <div class="bank-icon"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div> 
+        </div>
     </div>
 
-    <div class="contact-buttons">
-        <a href="tel:0120-000-000" class="btn btn-tel">
-            <i class="fas fa-phone-alt"></i>
-            <span>電話</span>
-        </a>
-        <a href="#contact" class="btn btn-mail">
-            <i class="fas fa-envelope"></i>
-            <span>メール</span>
-        </a>
+    <div class="area-card">
+        <div class="card-header">
+            <div class="header-pref">大阪府・京都府・兵庫県・奈良県</div>
+            <div class="header-sub">近郊エリア 対応</div>
+        </div>
+
+        <div class="card-body">
+            
+            <div class="headline-wrapper">
+                <div class="emphasis-dots">
+                    <span class="dot" style="margin-right: 25px;"></span>
+                    <span class="dot" style="margin-right: 30px;"></span>
+                    <span class="dot" style="margin-right: 20px;"></span>
+                    <span class="dot"></span>
+                </div>
+                
+                <div class="main-headline">
+                    <span class="highlight-text">最短</span><span class="highlight-number">10分</span><span class="suffix">で駆けつけ！</span>
+                </div>
+            </div>
+
+            <div class="sub-description">
+                多くの拠点でスタッフが待機しています。
+            </div>
+
+            <div class="detail-text">
+                お客様のお住まいエリアの近くの拠点から緊急出動いたします！
+            </div>
+
+            <div class="map-container">
+                <div class="map-placeholder">
+                    ここに地図画像を配置
+                </div>
+            </div>
+        </div>
     </div>
-</header>
+
+    <section class="reason-section">
+        <div class="header-area">
+            <div class="reason-sub-title">お困りごとを即解決！</div>
+            <h2 class="reason-main-title">安く・早く実現できる理由</h2>
+        </div>
+
+        <div class="reason-description">
+            仲介業者による不透明な費用の上乗せはされないため、<span class="text-highlight">一般的な業者と比べて低価格でサービス提供が可能</span>です。<br>
+            また、関西地域に絞っているため、<span class="text-highlight">現場から最も近いスタッフが駆け付け、すぐに対応いたします。</span>
+        </div>
+
+        <div class="comparison-wrapper">
+            <div class="comp-box box-general">
+                <div class="box-title-general">一般的な<br>業者</div>
+                
+                <div class="diagram-area">
+                    <div class="d-item">
+                        <i class="fas fa-user d-icon"></i>
+                        お客様
+                    </div>
+                    <div class="d-arrow">→</div>
+                    <div class="middle-agent-box">
+                        仲介業者
+                    </div>
+                    <div class="d-arrow">→</div>
+                    <div class="d-item">
+                        <i class="fas fa-wrench d-icon"></i>
+                        業者
+                    </div>
+                </div>
+
+                <div class="bottom-banner banner-general">
+                    <span class="banner-title-g">仲介料あり</span>
+                    <ul class="check-list">
+                        <li class="check-item g">料金が割高</li>
+                        <li class="check-item g">対応が遅い</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="comp-box box-ours">
+                <div class="box-title-ours">
+                    <div class="crown-mark"></div>
+                    弊社<br>便利屋
+                </div>
+
+                <div class="diagram-area">
+                    <div class="d-item">
+                        <i class="fas fa-user d-icon"></i>
+                        お客様
+                    </div>
+                    <div class="d-arrow">→</div>
+                    <div class="dashed-box"></div>
+                    <div class="d-arrow">→</div>
+                    <div class="d-item">
+                        <i class="fas fa-wrench d-icon"></i>
+                        弊社便利屋
+                    </div>
+                </div>
+
+                <div class="bottom-banner banner-ours">
+                    <span class="banner-title-o">直接関わる</span>
+                    <ul class="check-list">
+                        <li class="check-item o">料金が安い</li>
+                        <li class="check-item o">対応が早い</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </body>
 </html>
