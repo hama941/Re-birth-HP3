@@ -6,32 +6,32 @@
     <title>水道修理サービスLP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* カラーパレット定義 */
+        /* カラーパレット定義（少し落ち着いたトーンに変更） */
         :root {
-            --primary-blue: #4a90e2;
+            --primary-blue: #347ab7; /* 少し落ち着いた青 */
             --secondary-blue: #1a3c6e;
             --accent-orange: #d35400;
-            --accent-yellow: #f39c12;
-            --accent-green: #4caf50;
-            --text-dark: #333;
-            --bg-gradient-start: #e0f7fa;
-            --bg-gradient-end: #80deea;
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --glass-border: rgba(255, 255, 255, 0.5);
-            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            --accent-yellow: #f0ad4e;
+            --accent-green: #5cb85c;
+            --text-dark: #444;
+            --bg-color-main: #f0f4f8; /* ベースの背景色 */
+            --pattern-color: rgba(52, 122, 183, 0.15); /* パターンの色 */
+            --glass-bg: rgba(255, 255, 255, 0.9); /* 透明度を少し下げてマットに */
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --glass-shadow: 0 4px 20px rgba(0,0,0,0.08); /* 影も少し柔らかく */
         }
 
         /* 全体のリセットと基本設定 */
         body {
             font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
             margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* 外側の背景も少しお洒落に */
+            padding: 20px 0;
+            /* 外側の背景：落ち着いた単色グレーブルー */
+            background-color: #e8eff5;
             display: flex;
             justify-content: center;
             min-height: 100vh;
-            align-items: center; /* 画面中央に配置 */
-            padding: 20px 0; /* 上下に少し余白 */
+            align-items: center;
             box-sizing: border-box;
         }
 
@@ -39,50 +39,41 @@
         .lp-container {
             width: 100%;
             max-width: 480px;
-            /* お洒落なグラデーション背景 */
-            background: linear-gradient(to bottom, var(--bg-gradient-start) 0%, var(--primary-blue) 100%);
-            border-radius: 20px; /* 角を丸く */
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2); /* 影を強くして立体感を出す */
+            background-color: var(--bg-color-main);
+            /* CSSで微細なドットパターンを作成（これがテクスチャになります） */
+            background-image: radial-gradient(var(--pattern-color) 1px, transparent 1px);
+            background-size: 10px 10px; /* ドットの間隔 */
+            
+            border-radius: 20px;
+            /* 影を少しフラット気味にしてモダンに */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1), inset 0 0 20px rgba(255,255,255,0.5);
             position: relative;
             padding-bottom: 40px;
             overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.5); /* 薄い枠線を足して高級感 */
         }
 
-        /* CSSで作成した抽象的な波紋パターン背景 */
-        .water-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            /* 複数の円形グラデーションを重ねて波紋を表現 */
-            background-image:
-                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 25%),
-                radial-gradient(circle at 80% 60%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 20%),
-                radial-gradient(circle at 50% 80%, rgba(74, 144, 226, 0.3) 0%, rgba(74, 144, 226, 0) 30%),
-                radial-gradient(circle at 10% 90%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 15%);
-            opacity: 0.6;
-            pointer-events: none;
-            z-index: 0;
-            mix-blend-mode: overlay; /* 背景となじませる */
-        }
+        /* 以前の波紋背景は削除しました */
 
         /* コンテンツエリア */
         .content {
             position: relative;
             z-index: 1;
-            padding: 30px 20px; /* パディングを少し調整 */
+            padding: 30px 25px;
             text-align: center;
         }
 
         /* ヘッダー部分 */
         .header-top {
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             font-weight: bold;
             line-height: 1.4;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8); /* 文字を見やすく */
         }
 
         .text-blue {
-            color: var(--secondary-blue); /* 少し濃い青に変更 */
+            color: var(--secondary-blue);
             font-size: 28px;
+            letter-spacing: 1px;
         }
         
         .time-emphasize {
@@ -91,42 +82,43 @@
             margin: 0 5px;
             position: relative;
             display: inline-block;
-            color: var(--accent-orange); /* 色を変更 */
-            font-family: 'Arial Black', sans-serif; /* フォントを強調 */
+            color: var(--accent-orange);
+            font-family: 'Arial Black', sans-serif;
         }
         /* 「10分」の上の点々 */
         .time-emphasize::before {
             content: "• • •";
             position: absolute;
-            top: -25px;
+            top: -22px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 20px;
+            font-size: 18px;
             color: var(--accent-orange);
-            letter-spacing: 5px;
+            letter-spacing: 4px;
             font-style: normal;
         }
 
         .text-main-catch {
             color: var(--accent-orange);
-            font-size: 34px;
+            font-size: 32px;
             font-weight: 900;
-            margin-top: 10px;
+            margin-top: 12px;
             font-style: italic;
-            text-shadow: 2px 2px 4px rgba(255,255,255,1); /* 縁取りを強く */
+            /* テキストの影を調整して、背景から浮き上がらせる */
+            text-shadow: 2px 2px 0px #fff, 3px 3px 5px rgba(0,0,0,0.1);
         }
 
-        /* メインの白いボックスエリア（グラスモーフィズム適用） */
+        /* メインの白いボックスエリア（グラスモーフィズム継続） */
         .white-box {
-            background: var(--glass-bg); /* 半透明背景 */
-            backdrop-filter: blur(10px); /* すりガラス効果 */
-            -webkit-backdrop-filter: blur(10px); /* Safari用 */
-            border: 1px solid var(--glass-border); /* 薄い枠線 */
+            background: var(--glass-bg);
+            backdrop-filter: blur(5px); /* ぼかしを少し弱めてマットな質感に */
+            -webkit-backdrop-filter: blur(5px);
+            border: 2px solid var(--glass-border); /* 枠線を少し太く */
             border-radius: 16px;
-            padding: 30px 25px;
-            margin: 0 auto 30px;
-            width: 95%;
-            box-shadow: var(--glass-shadow); /* 柔らかな影 */
+            padding: 35px 25px;
+            margin: 0 auto 35px;
+            width: 92%;
+            box-shadow: var(--glass-shadow);
             text-align: left;
             position: relative;
             box-sizing: border-box;
@@ -138,7 +130,7 @@
             font-size: 21px;
             margin-bottom: 25px;
             text-align: center;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         .check-list {
@@ -149,7 +141,7 @@
         }
 
         .check-list li {
-            margin-bottom: 15px;
+            margin-bottom: 16px;
             font-weight: bold;
             color: var(--text-dark);
             font-size: 17px;
@@ -160,17 +152,19 @@
         .check-list li i {
             color: var(--primary-blue);
             font-size: 24px;
-            margin-right: 12px;
-            filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.1)); /* アイコンに少し影 */
+            margin-right: 14px;
+            /* アイコンにも少しリッチな影 */
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.1));
         }
 
         /* 24時間対応テキスト */
         .support-text {
-            color: #ffffff; /* 背景が濃いので白文字に */
+            color: var(--secondary-blue); /* 背景が明るくなったので濃い青に戻す */
             font-weight: bold;
             font-size: 22px;
-            margin: 40px 0 20px;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.3); /* 影をつけて視認性アップ */
+            margin: 30px 0 25px;
+            text-shadow: 1px 1px 1px rgba(255,255,255,1);
+            letter-spacing: 1px;
         }
 
         /* CTAボタン共通 */
@@ -178,25 +172,26 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 95%;
-            margin: 12px auto;
-            padding: 16px;
-            border-radius: 14px;
+            width: 92%;
+            margin: 14px auto;
+            padding: 18px;
+            border-radius: 50px; /* 丸みを強くしてモダンに */
             text-decoration: none;
             color: #fff;
             font-weight: bold;
             font-size: 22px;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2); /* 影をリッチに */
+            /* グラデーションを少しマットに */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
             transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.2); /* ボタンにも薄い枠線 */
+            border: 2px solid rgba(255,255,255,0.3);
         }
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
         }
         .btn:active {
             transform: translateY(1px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
         }
         .btn i {
             margin-right: 12px;
@@ -204,21 +199,21 @@
         }
 
         .btn-tel {
-            background: linear-gradient(to right, var(--accent-yellow), var(--accent-orange));
+            background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange));
         }
 
         .btn-mail {
-            background: linear-gradient(to right, #66bb6a, var(--accent-green));
+            background: linear-gradient(135deg, #66bb6a, var(--accent-green));
         }
 
-        /* お支払方法セクション（グラスモーフィズム適用） */
+        /* お支払方法セクション */
         .payment-box {
             background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--primary-blue); /* 枠線は青で強調 */
-            border-radius: 14px;
-            width: 95%;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 2px solid var(--primary-blue);
+            border-radius: 16px;
+            width: 92%;
             margin: 40px auto 0;
             overflow: hidden;
             box-shadow: var(--glass-shadow);
@@ -227,7 +222,7 @@
         .payment-header {
             background: var(--primary-blue);
             color: #fff;
-            padding: 12px;
+            padding: 14px;
             font-weight: bold;
             font-size: 16px;
             letter-spacing: 1px;
@@ -237,7 +232,7 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            padding: 20px 0;
+            padding: 25px 0;
         }
 
         .payment-item {
@@ -250,36 +245,37 @@
         }
 
         .payment-label {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             text-align: center;
             display: block;
         }
 
-        /* アイコン画像（FontAwesomeで代用） */
+        /* アイコン画像 */
         .icon-wrapper {
-            height: 50px;
-            width: 60px;
+            height: 55px;
+            width: 65px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255,255,255,0.5); /* アイコンの背景を少し白く */
-            border-radius: 10px;
+            background: #fff; /* 背景を白くしてクリーンに */
+            border-radius: 12px;
             padding: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* わずかな立体感 */
         }
         
-        .fa-wallet { color: #e74c3c; font-size: 36px; filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.1)); }
-        .fa-coins { color: #f1c40f; font-size: 24px; filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.1)); }
+        .fa-wallet { color: #e74c3c; font-size: 38px; }
+        .fa-coins { color: #f1c40f; font-size: 26px; }
         .cash-icon-group { position: relative; }
         
         .bank-icon {
-            background: linear-gradient(to bottom, #a5d6a7, #81c784); /* グラデーションに変更 */
+            background: linear-gradient(to bottom, #a5d6a7, #81c784);
             width: 54px;
             height: 34px;
             border-radius: 4px;
             position: relative;
-            box-shadow: 0 3px 0 #388e3c, 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 0 #388e3c;
         }
         .bank-icon::after {
             content: "";
@@ -293,7 +289,7 @@
         .divider {
             width: 1px;
             height: 60px;
-            background-color: rgba(0,0,0,0.1); /* 薄くして馴染ませる */
+            background-color: rgba(0,0,0,0.1);
         }
 
     </style>
@@ -301,8 +297,6 @@
 <body>
 
     <div class="lp-container">
-        <div class="water-bg"></div>
-
         <div class="content">
             <div class="header-top">
                 <div class="text-blue">最短<span class="time-emphasize">10分</span>で</div>
@@ -358,4 +352,3 @@
 
 </body>
 </html>
-
