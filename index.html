@@ -3,14 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3つの安心・お申し込み案内・よくあるご質問</title>
+<title>便利屋マスターズ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
     /* =========================================
-       共通・リセットCSS（前半ベース）
+       全体共通設定
        ========================================= */
     * {
         box-sizing: border-box;
@@ -19,18 +20,193 @@
     }
 
     body {
-        /* フォントはNoto Sans JPを優先 */
-        font-family: 'Noto Sans JP', "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+        /* フォントはNoto Sans JPとヒラギノ等の合成 */
+        font-family: 'Noto Sans JP', "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
         color: #333;
         line-height: 1.6;
-        /* 全体の背景色：落ち着いた薄いブルーグレー */
-        background-color: #f4f7fa; 
+        /* 全体の背景色はヘッダー側の水色に合わせつつ、下部コンテンツとの馴染みを調整 */
+        background-color: #e6f4ff; 
         padding-bottom: 50px;
     }
 
     /* =========================================
-       セクション1：3つの安心 (Navy Theme)
+       前半パート：ヘッダー・サービス一覧
        ========================================= */
+    .top-container {
+        max-width: 750px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+        padding-bottom: 20px;
+    }
+
+    /* --- ヘッダーエリア --- */
+    .header {
+        padding-top: 40px;
+        /* ヘッダー背景を少し濃い水色のグラデーション */
+        background: linear-gradient(to bottom, #cceeff 0%, #e6f4ff 100%);
+        position: relative;
+        padding-bottom: 20px;
+    }
+
+    /* 赤と青のタグ */
+    .top-tags {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .tag {
+        padding: 10px 30px;
+        color: white;
+        position: relative;
+        /* タグの尖った形を再現 */
+        clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%);
+        min-width: 140px;
+    }
+
+    .tag-red { background-color: #d80017; }
+    .tag-blue { background-color: #007bd9; }
+
+    /* ロゴとメインタイトル */
+    .logo-area {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    
+    .logo-area i { color: #007bd9; margin-right: 5px; }
+
+    .main-copy {
+        font-size: 2.5rem;
+        font-weight: 900;
+        line-height: 1.3;
+        margin: 20px 0 30px;
+        color: #0044cc; 
+    }
+
+    /* --- サービスアイコン一覧 (丸い部分) --- */
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 4列 */
+        gap: 15px;
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    /* スマホ調整 */
+    @media (max-width: 600px) {
+        .services-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .main-copy { font-size: 1.8rem; }
+        .top-tags { gap: 5px; }
+        .tag { padding: 8px 15px; min-width: auto; font-size: 0.9rem;}
+    }
+
+    .service-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .circle-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-color: #ddd;
+        overflow: hidden;
+        border: 3px solid #fff;
+        position: relative;
+        margin-bottom: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .circle-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* チェックマークアイコン */
+    .check-badge {
+        position: absolute;
+        top: -5px;
+        right: 5px;
+        width: 30px;
+        height: 30px;
+        z-index: 10;
+    }
+    .check-badge::before {
+        content: '\f058';
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        color: #f0f0f0;
+        font-size: 24px;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        background: radial-gradient(#ffffff, #aaaaaa);
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .service-name {
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: #0055aa;
+        line-height: 1.2;
+        margin-top: 5px;
+    }
+    
+    .small-note {
+        display: block;
+        font-size: 0.7rem;
+        color: #cc0000;
+    }
+
+    /* --- 下部のテキストエリア --- */
+    .bottom-message {
+        margin-top: 30px;
+        padding: 20px;
+        position: relative;
+        color: #0044cc;
+    }
+
+    .bottom-message h2 {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        margin: 0;
+        padding: 20px 0;
+        font-weight: bold;
+    }
+    
+    /* 強調線 */
+    .emphasis-container {
+         position: relative;
+         display: inline-block;
+         padding: 0 40px;
+    }
+
+    .emphasis-lines-left, .emphasis-lines-right {
+        position: absolute;
+        top: 50%;
+        width: 30px;
+        height: 2px;
+        background: #0044cc;
+    }
+    .emphasis-lines-left { left: 0; transform: rotate(-25deg); }
+    .emphasis-lines-right { right: 0; transform: rotate(25deg); }
+
+
+    /* =========================================
+       後半パート：3つの安心・フロー・FAQ
+       ========================================= */
+    
+    /* セクション1：3つの安心 (Navy Theme) */
     .promise-section {
         max-width: 1000px;
         margin: 0 auto 60px auto;
@@ -38,6 +214,8 @@
         text-align: center;
         /* 背景のグラデーション：薄いネイビーから白へ */
         background: linear-gradient(135deg, #e6ecf5 0%, #ffffff 100%); 
+        /* 上部との区切りのために少し角丸やマージンを調整 */
+        border-radius: 20px;
     }
 
     /* メインタイトル */
@@ -56,7 +234,7 @@
         display: block;
         width: 60px;
         height: 60px;
-        background-color: #d0dbe8; /* タイトル装飾も落ち着いた色に */
+        background-color: #d0dbe8;
         border-radius: 50%;
         position: absolute;
         top: -10px;
@@ -77,7 +255,7 @@
     .card {
         background: #fff;
         border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0, 35, 71, 0.1); /* 影の色もネイビー寄りに */
+        box-shadow: 0 5px 15px rgba(0, 35, 71, 0.1);
         width: 100%;
         max-width: 300px;
         overflow: visible;
@@ -147,7 +325,7 @@
     .card-title {
         font-size: 18px;
         font-weight: 700;
-        color: #1a3c5e; /* サブネイビーに変更 */
+        color: #1a3c5e;
         margin-bottom: 15px;
         line-height: 1.4;
     }
@@ -159,9 +337,7 @@
         margin: 0;
     }
 
-    /* =========================================
-       セクション2：お申し込みの流れ (Navy & Gold Theme)
-       ========================================= */
+    /* セクション2：お申し込みの流れ (Navy & Gold Theme) */
     .flow-section {
         max-width: 600px;
         margin: 0 auto;
@@ -308,9 +484,7 @@
         letter-spacing: 2px;
     }
 
-    /* =========================================
-       セクション3：お支払い方法 (Navy Theme)
-       ========================================= */
+    /* セクション3：お支払い方法 (Navy Theme) */
     .lp-payment-section {
         width: 100%;
         max-width: 600px;
@@ -382,18 +556,15 @@
         fill: #fff;
     }
 
-    /* =========================================
-       セクション4：よくあるご質問 (Added Section)
-       ========================================= */
+    /* セクション4：よくあるご質問 (Added Section) */
     :root {
-        --main-color: #65BBE9; /* ロゴやテーマに合わせやすいオレンジ */
-        --bg-color: #fcfcfc;
+        --main-color: #65BBE9;
         --text-dark: #333;
     }
 
     .faq-section {
-        max-width: 700px; /* PCでも横に広がりすぎず読みやすい幅 */
-        margin: 60px auto 0 auto; /* 前のセクションとの間隔調整 */
+        max-width: 700px;
+        margin: 60px auto 0 auto;
     }
 
     .faq-header {
@@ -404,7 +575,7 @@
     /* アコーディオンの外枠 */
     .faq-container {
         display: flex;
-        flex-direction: column; /* 常に縦一列に並べる */
+        flex-direction: column;
         gap: 12px;
     }
 
@@ -485,7 +656,7 @@
     }
 
     /* =========================================
-       レスポンシブ対応 (全体)
+       レスポンシブ対応 (後半パート)
        ========================================= */
     @media (max-width: 768px) {
         .cards-container {
@@ -541,7 +712,102 @@
 </head>
 <body>
 
-    <section class="promise-section">
+    <div class="top-container">
+
+        <header class="header">
+            <div class="top-tags">
+                <div class="tag tag-red">一般家庭</div>
+                <div class="tag tag-blue">法人・店舗</div>
+            </div>
+
+            <div class="logo-area">
+                <i class="fa-solid fa-hammer"></i> 便利屋は
+            </div>
+
+            <h1 class="main-copy">
+                暮らしのトラブルに関する<br>
+                全てのご依頼に応えます！
+            </h1>
+        </header>
+
+        <section class="services-grid">
+            <div class="service-item">
+                <div class="check-badge"></div>
+                <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="家具家電の移動"></div>
+                <div class="service-name">家具家電の移動</div>
+            </div>
+            <div class="service-item">
+                <div class="check-badge"></div>
+                <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="家具組み立て"></div>
+                <div class="service-name">家具組み立て</div>
+            </div>
+            <div class="service-item">
+                <div class="check-badge"></div>
+                <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="高所作業"></div>
+                <div class="service-name">高所作業</div>
+            </div>
+            <div class="service-item">
+                <div class="check-badge"></div>
+                <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="同行"></div>
+                <div class="service-name">同行</div>
+            </div>
+
+            <div class="service-item">
+                <div class="check-badge"></div>
+                <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="代理"></div>
+                <div class="service-name">代理</div>
+            </div>
+            <div class="service-item">
+                <div class="check-badge"></div>
+                <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="シニアサポート"></div>
+                <div class="service-name">シニアサポート</div>
+            </div>
+            <div class="service-item">
+                <div class="check-badge"></div>
+                <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="付き添い代行"></div>
+                <div class="service-name">付き添い代行</div>
+            </div>
+            <div class="service-item">
+                <div class="check-badge"></div>
+                <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="家事代行"></div>
+                <div class="service-name">家事代行</div>
+            </div>
+
+            <div class="service-item">
+                <div class="check-badge"></div>
+                <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="買い物代行"></div>
+                <div class="service-name">買い物代行</div>
+            </div>
+            <div class="service-item">
+                <div class="check-badge"></div>
+                <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="浮気調査"></div>
+                <div class="service-name">浮気調査</div>
+            </div>
+            <div class="service-item">
+                <div class="check-badge"></div>
+                <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="イベントサポート"></div>
+                <div class="service-name">イベント<br>サポート</div>
+            </div>
+            <div class="service-item">
+                <div class="check-badge"></div>
+                <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="その他サポート"></div>
+                <div class="service-name">その他サポート<span class="small-note">※応相談！</span></div>
+            </div>
+        </section>
+
+        <div class="bottom-message">
+            <div class="emphasis-container">
+                <span class="emphasis-lines-left"></span>
+                <h2>
+                    あらゆるお困りごとに対応してきた<br>
+                    プロ集団が経験と技術で<br>
+                    あなたの理想を実現します！
+                </h2>
+                <span class="emphasis-lines-right"></span>
+            </div>
+        </div>
+
+    </div><section class="promise-section">
         <h2 class="section-title">
             私たちは<br>
             3つの安心をお約束します
@@ -681,128 +947,4 @@
                     現金
                 </div>
                 <div class="payment-badge badge-bank">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M243.4 2.6l-224 96c-14 6-21.8 21-18.7 35.8S16.8 160 32 160v8c0 13.3 10.7 24 24 24H456c13.3 0 24-10.7 24-24v-8c15.2 0 28.3-11.1 31.4-25.6s-4.8-29.9-18.7-35.8l-224-96c-8-3.4-17.2-3.4-25.2 0zM128 224H64V420.3c-.6 .3-1.2 .7-1.8 1.1l-48 32c-11.7 7.8-17 22.4-12.9 35.9S17.9 512 32 512H480c14.1 0 26.5-9.2 30.6-22.7s-1.1-28.1-12.9-35.9l-48-32c-.6-.4-1.2-.7-1.8-1.1V224H384V416H344V224H280V416H232V224H168V416H128V224zM256 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
-                    銀行振込
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="faq-section">
-        <div class="faq-header">
-            <h2>よくあるご質問</h2>
-        </div>
-    
-        <div class="faq-container">
-            
-            <div class="faq-item">
-                <button class="faq-question">どのくらいで到着しますか？</button>
-                <div class="faq-answer">
-                    <div class="answer-inner">
-                        最短10分で現場までお伺いさせていただきます。お急ぎの方も気軽にお電話ください。
-                    </div>
-                </div>
-            </div>
-    
-            <div class="faq-item">
-                <button class="faq-question">お支払方法は何がありますか？</button>
-                <div class="faq-answer">
-                    <div class="answer-inner">
-                        現金またはお振込みでお支払い可能です。
-                    </div>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <button class="faq-question">作業後に見積もりより高い金額を請求されることはありますか？</button>
-                <div class="faq-answer">
-                    <div class="answer-inner">
-                        いいえ、ございません。作業前に施工内容と料金の詳細を明確にご説明し、ご納得いただいてから作業に入りますので、どうぞご安心ください。
-                    </div>
-                </div>
-            </div>
-    
-            <div class="faq-item">
-                <button class="faq-question">法人の依頼ですが、後日請求書払いは可能ですか？</button>
-                <div class="faq-answer">
-                    <div class="answer-inner">
-                        法人様のご依頼も柔軟に対応しております。後日の請求書払いについても、お電話や現地調査の際にお申し付けいただければ調整可能です。
-                    </div>
-                </div>
-            </div>
-    
-            <div class="faq-item">
-                <button class="faq-question">作業にあたって、こちらで準備することはありますか？</button>
-                <div class="faq-answer">
-                    <div class="answer-inner">
-                        お客様にご準備いただくことは一切ございません。事前の準備から作業後の片付けまで、すべて弊社の専門スタッフが責任を持って行います。
-                    </div>
-                </div>
-            </div>
-    
-            <div class="faq-item">
-                <button class="faq-question">予約のキャンセルはできますか？</button>
-                <div class="faq-answer">
-                    <div class="answer-inner">
-                        可能です。お見積もり内容をしっかりご確認いただいた上で、ご納得いただけない場合は取り掛かる前にキャンセルいただけます。まずは安心してお見積もりをご依頼ください。
-                    </div>
-                </div>
-            </div>
-    
-            <div class="faq-item">
-                <button class="faq-question">どのエリアまで対応していますか？</button>
-                <div class="faq-answer">
-                    <div class="answer-inner">
-                        大阪、兵庫、奈良、和歌山、京都の各府県に対応しております。詳細な訪問時間などは、お電話の際にお伝えいたします。
-                    </div>
-                </div>
-            </div>
-    
-            <div class="faq-item">
-                <button class="faq-question">出張料や見積もり料はいくらですか？</button>
-                <div class="faq-answer">
-                    <div class="answer-inner">
-                        弊社では、出張料およびお見積もり料はすべて「0円」です。お客様にご提示するのは作業料金のみですので、ご安心ください。
-                    </div>
-                </div>
-            </div>
-    
-            <div class="faq-item">
-                <button class="faq-question">予算が決まっているのですが、その範囲内で駆除できますか？</button>
-                <div class="faq-answer">
-                    <div class="answer-inner">
-                        はい、お客様のご予算に合わせて最適なプランをご提案いたします。現地調査の結果を踏まえ、ご予算内で最大限の効果が出せる方法を一緒に検討させていただきます。
-                    </div>
-                </div>
-            </div>
-    
-            <div class="faq-item">
-                <button class="faq-question">他社の見積もりが高額でした。安くできますか？</button>
-                <div class="faq-answer">
-                    <div class="answer-inner">
-                        ぜひご相談ください！地域最安値を目指しておりますので、他社様のお見積もり内容を教えていただければ、それよりも低価格でご案内できるよう最大限努力いたします。
-                    </div>
-                </div>
-            </div>
-    
-        </div>
-    </div>
-
-<script>
-    // FAQ用スクリプト
-    document.querySelectorAll('.faq-question').forEach(button => {
-        button.addEventListener('click', () => {
-            const faqItem = button.parentElement;
-
-            // 他の項目を閉じたい場合は以下の3行を有効化（お好みで）
-            /* document.querySelectorAll('.faq-item').forEach(item => {
-                if (item !== faqItem) item.classList.remove('open');
-            }); */
-
-            faqItem.classList.toggle('open');
-        });
-    });
-</script>
-
-</body>
-</html>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M
