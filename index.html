@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>便利屋マスターズ LP再現（水色背景・写真なし）</title>
+    <title>便利屋マスターズ LP再現（水色背景・文字調整版）</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* --- 基本設定 --- */
@@ -168,12 +168,15 @@
             color: #0044cc; /* 文字色を濃い青に */
         }
 
+        /* ▼▼▼ 文字サイズ変更箇所 ▼▼▼ */
         .bottom-message h2 {
-            font-size: 1.8rem;
-            line-height: 1.5;
+            font-size: 1.2rem; /* 1.8rem -> 1.2rem に変更 */
+            line-height: 1.6;
             margin: 0;
             padding: 20px 0;
+            font-weight: bold; /* 必要に応じて太さ調整 */
         }
+        /* ▲▲▲ 文字サイズ変更箇所 ▲▲▲ */
         
         /* 強調線（斜めの線）のコンテナ */
         .emphasis-container {
@@ -208,7 +211,7 @@
         </div>
 
         <div class="logo-area">
-            <i class="fa-solid fa-hammer"></i> 便利屋マスターズは
+            <i class="fa-solid fa-hammer"></i> 便利屋は
         </div>
 
         <h1 class="main-copy">
