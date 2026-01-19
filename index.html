@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>便利屋マスターズ LP再現（人物なし）</title>
+    <title>便利屋マスターズ LP再現（水色背景・写真なし）</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* --- 基本設定 --- */
@@ -11,23 +11,27 @@
             margin: 0;
             padding: 0;
             font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-            background-color: #020518; /* 背景の深い紺色 */
-            color: #ffffff;
+            /* 背景色を明るい水色に変更 */
+            background-color: #e6f4ff;
+            /* 文字色を濃いグレーに変更 */
+            color: #333333;
             line-height: 1.5;
         }
 
         .container {
-            max-width: 750px; /* LPの幅制限 */
+            max-width: 750px;
             margin: 0 auto;
             position: relative;
             overflow: hidden;
             text-align: center;
+            padding-bottom: 50px; /* 下部の余白 */
         }
 
         /* --- ヘッダーエリア --- */
         .header {
-            padding-top: 40px; /* 上部の余白を少し調整 */
-            background: radial-gradient(circle at center, #0a1a4a 0%, #020518 70%);
+            padding-top: 40px;
+            /* ヘッダー背景を少し濃い水色のグラデーションに変更 */
+            background: linear-gradient(to bottom, #cceeff 0%, #e6f4ff 100%);
             position: relative;
             padding-bottom: 20px;
         }
@@ -58,22 +62,19 @@
         .logo-area {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #fff;
+            /* color: #fff; を削除し、親の文字色を継承 */
             margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         
-        .logo-area i { color: #4CAF50; margin-right: 5px; } /* ハンマーアイコンの色 */
+        .logo-area i { color: #007bd9; margin-right: 5px; } /* ハンマーの色を青に変更 */
 
         .main-copy {
             font-size: 2.5rem;
             font-weight: 900;
             line-height: 1.3;
             margin: 20px 0 30px;
-            background: linear-gradient(to bottom, #ffffff 60%, #e0e0e0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0px 4px 10px rgba(0,0,0,0.8);
+            /* 背景が明るいため、白抜きのグラデーションを廃止し、濃い青文字に変更 */
+            color: #0044cc; 
         }
 
         /* --- サービスアイコン一覧 (丸い部分) --- */
@@ -111,6 +112,7 @@
             border: 3px solid #fff;
             position: relative;
             margin-bottom: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 軽い影を追加 */
         }
 
         /* ※ここに実際の画像のパスを入れてください */
@@ -124,20 +126,20 @@
         .check-badge {
             position: absolute;
             top: -5px;
-            right: 5px; /* 位置調整 */
+            right: 5px;
             width: 30px;
             height: 30px;
             z-index: 10;
         }
-        /* シルバーのチェックマークをCSSで簡易再現 */
+        /* シルバーのチェックマーク */
         .check-badge::before {
-            content: '\f058'; /* FontAwesomeの円形チェック */
+            content: '\f058';
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
-            color: #fff; /* 白抜き */
+            color: #f0f0f0; /* 白に近いグレー */
             font-size: 24px;
-            text-shadow: 1px 1px 2px #000;
-            background: radial-gradient(#ccc, #666);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            background: radial-gradient(#ffffff, #aaaaaa);
             border-radius: 50%;
             display: inline-block;
         }
@@ -145,15 +147,17 @@
         .service-name {
             font-size: 0.9rem;
             font-weight: bold;
-            color: #fff;
-            text-shadow: 1px 1px 2px #000;
+            /* 文字色を濃い青系に変更 */
+            color: #0055aa;
             line-height: 1.2;
+            margin-top: 5px;
         }
         
         .small-note {
             display: block;
             font-size: 0.7rem;
-            color: #ffcc00;
+            /* 注釈の色を赤系に変更 */
+            color: #cc0000;
         }
 
         /* --- 下部のテキストエリア --- */
@@ -161,6 +165,7 @@
             margin-top: 30px;
             padding: 20px;
             position: relative;
+            color: #0044cc; /* 文字色を濃い青に */
         }
 
         .bottom-message h2 {
@@ -174,7 +179,7 @@
         .emphasis-container {
              position: relative;
              display: inline-block;
-             padding: 0 40px; /* 線が入るスペースを確保 */
+             padding: 0 40px;
         }
 
         .emphasis-lines-left, .emphasis-lines-right {
@@ -182,56 +187,13 @@
             top: 50%;
             width: 30px;
             height: 2px;
-            background: white;
+            /* 強調線の色を濃い青に変更 */
+            background: #0044cc;
         }
         .emphasis-lines-left { left: 0; transform: rotate(-25deg); }
         .emphasis-lines-right { right: 0; transform: rotate(25deg); }
 
-
-        /* --- フッターの写真エリア --- */
-        .photo-strip {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            padding: 20px;
-            margin-bottom: 50px;
-            position: relative;
-            margin-top: 20px;
-        }
-
-        .polaroid {
-            width: 22%;
-            background: #fff;
-            padding: 3px;
-            transform: rotate(-3deg);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-        }
-        /* 写真の角度をバラバラに */
-        .polaroid:nth-child(2) { transform: rotate(2deg); }
-        .polaroid:nth-child(3) { transform: rotate(-1deg); }
-        .polaroid:nth-child(4) { transform: rotate(4deg); }
-
-        /* ※ここに実際の画像のパスを入れてください */
-        .polaroid img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Check!! バッジ */
-        .check-sticker {
-            position: absolute;
-            bottom: 20px;
-            right: 10px;
-            background-color: #0044cc;
-            color: yellow;
-            padding: 5px 20px;
-            transform: rotate(-20deg);
-            font-weight: bold;
-            font-size: 1.2rem;
-            border: 2px solid white;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-        }
+        /* 写真エリアのCSSは削除しました */
 
     </style>
 </head>
@@ -332,17 +294,9 @@
         </div>
     </div>
 
-    <div class="photo-strip">
-        <div class="polaroid"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Photo1" alt="写真1"></div>
-        <div class="polaroid"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Photo2" alt="写真2"></div>
-        <div class="polaroid"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Photo3" alt="写真3"></div>
-        <div class="polaroid"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Photo4" alt="写真4"></div>
-        
-        <div class="check-sticker">Check!!</div>
     </div>
-
-</div>
 
 </body>
 </html>
+
 
