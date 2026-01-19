@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LPエリア対応セクション（ネイビーver）</title>
+    <title>LPエリア対応セクション（ネイビー・1行修正版）</title>
     <style>
         /* ベースのフォント設定 */
         body {
             font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-            background-color: #f4f4f7; /* 背景も少し落ち着いた色に変更 */
+            background-color: #f4f4f7;
             display: flex;
             justify-content: center;
             padding: 20px;
@@ -17,9 +17,9 @@
 
         /* --- カラー定義 --- */
         :root {
-            --main-navy: #1a2a45; /* メインのネイビー色 */
-            --accent-yellow: #ffcc00; /* 黄色文字 */
-            --accent-orange: #ff6600; /* オレンジの点 */
+            --main-navy: #1a2a45;
+            --accent-yellow: #ffcc00;
+            --accent-orange: #ff6600;
         }
 
         /* 外側の白いカード枠 */
@@ -27,7 +27,7 @@
             width: 100%;
             max-width: 480px;
             background: #fff;
-            border: 3px solid var(--main-navy); /* 【変更】ネイビーに変更 */
+            border: 3px solid var(--main-navy);
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(26, 42, 69, 0.15);
@@ -36,16 +36,23 @@
 
         /* ヘッダー（ネイビー背景部分） */
         .card-header {
-            background-color: var(--main-navy); /* 【変更】ネイビーに変更 */
+            background-color: var(--main-navy);
             color: var(--accent-yellow);
-            padding: 15px 10px;
+            padding: 15px 5px; /* 左右の余白を少し詰めて文字スペースを確保 */
             font-weight: bold;
         }
 
+        /* 【修正箇所】
+           県名を必ず1行に収めるための設定 
+        */
         .header-pref {
-            font-size: 1.4rem;
+            /* 画面幅に合わせてフォントサイズを自動調整（最小16px〜最大22px） */
+            font-size: clamp(1rem, 4.5vw, 1.4rem);
             margin: 0;
             line-height: 1.4;
+            
+            /* 折り返しを禁止して1行にする */
+            white-space: nowrap;
         }
 
         .header-sub {
@@ -57,7 +64,6 @@
         /* メインコンテンツエリア */
         .card-body {
             padding: 20px 15px;
-            /* 背景のうっすら横線も少し色を調整 */
             background-image: linear-gradient(transparent 50%, rgba(26, 42, 69, 0.03) 50%);
             background-size: 100% 4px; 
         }
@@ -69,7 +75,7 @@
             display: inline-block;
         }
 
-        /* 強調のオレンジ色の点（圏点） */
+        /* 強調のオレンジ色の点 */
         .emphasis-dots {
             display: flex;
             justify-content: center;
@@ -91,22 +97,20 @@
         .main-headline {
             font-size: 1.4rem;
             font-weight: bold;
-            color: var(--main-navy); /* 【変更】基本色もネイビー寄りに */
+            color: var(--main-navy);
             font-style: italic;
             line-height: 1.4;
         }
 
-        /* 「最短」テキスト強調 */
         .highlight-text {
-             color: var(--main-navy); /* 【変更】ネイビーに変更 */
+             color: var(--main-navy);
              font-style: italic;
              font-size: 2rem;
              margin-right: 5px;
         }
 
-        /* 「10分」数字強調 */
         .highlight-number {
-            color: var(--main-navy); /* 【変更】ネイビーに変更 */
+            color: var(--main-navy);
             font-size: 2.8rem;
             font-family: Arial, sans-serif;
             font-weight: 900;
@@ -124,7 +128,7 @@
         /* 説明文 */
         .sub-description {
             font-weight: bold;
-            color: var(--main-navy); /* 【変更】少し濃い色に */
+            color: var(--main-navy);
             font-size: 1rem;
             margin-bottom: 10px;
         }
@@ -145,7 +149,6 @@
             margin-top: 20px;
         }
 
-        /* 画像がない場合のダミー表示 */
         .map-placeholder {
             width: 100%;
             height: auto;
@@ -158,13 +161,6 @@
             font-weight: bold;
         }
         
-        /* 実際の画像を想定したスタイル（画像準備後に使用） */
-        .map-img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
     </style>
 </head>
 <body>
@@ -208,3 +204,4 @@
 
 </body>
 </html>
+
