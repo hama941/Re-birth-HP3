@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>便利屋マスターズ LP再現</title>
+    <title>便利屋マスターズ LP再現（人物なし）</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* --- 基本設定 --- */
@@ -26,9 +26,10 @@
 
         /* --- ヘッダーエリア --- */
         .header {
-            padding-top: 20px;
+            padding-top: 40px; /* 上部の余白を少し調整 */
             background: radial-gradient(circle at center, #0a1a4a 0%, #020518 70%);
             position: relative;
+            padding-bottom: 20px;
         }
 
         /* 赤と青のタグ */
@@ -68,30 +69,12 @@
             font-size: 2.5rem;
             font-weight: 900;
             line-height: 1.3;
-            margin: 20px 0 40px;
+            margin: 20px 0 30px;
             background: linear-gradient(to bottom, #ffffff 60%, #e0e0e0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0px 4px 10px rgba(0,0,0,0.8);
         }
-
-        /* 人物の配置（ダミー） */
-        /* ※実際の画像がある場合はここにimgタグを絶対配置します */
-        .person-placeholder {
-            position: absolute;
-            top: 50px;
-            width: 120px;
-            height: 250px;
-            background: rgba(255,255,255,0.1); /* ダミーの透明ボックス */
-            border: 2px dashed #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-        }
-        .person-left { left: 10px; }
-        .person-right { right: 10px; }
-
 
         /* --- サービスアイコン一覧 (丸い部分) --- */
         .services-grid {
@@ -102,7 +85,7 @@
             max-width: 100%;
         }
 
-        /* スマホなどの小さい画面では3列や2列にする場合 */
+        /* スマホなどの小さい画面では3列にする調整 */
         @media (max-width: 600px) {
             .services-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -130,6 +113,7 @@
             margin-bottom: 8px;
         }
 
+        /* ※ここに実際の画像のパスを入れてください */
         .circle-img img {
             width: 100%;
             height: 100%;
@@ -141,8 +125,6 @@
             position: absolute;
             top: -5px;
             right: 5px; /* 位置調整 */
-            background-color: transparent;
-            color: #silver;
             width: 30px;
             height: 30px;
             z-index: 10;
@@ -176,31 +158,34 @@
 
         /* --- 下部のテキストエリア --- */
         .bottom-message {
-            margin-top: 40px;
+            margin-top: 30px;
             padding: 20px;
+            position: relative;
         }
 
         .bottom-message h2 {
             font-size: 1.8rem;
             line-height: 1.5;
-            margin-bottom: 30px;
+            margin: 0;
+            padding: 20px 0;
         }
         
-        /* 強調線（斜めの線） */
-        .emphasis-lines {
-            position: relative;
-            display: inline-block;
+        /* 強調線（斜めの線）のコンテナ */
+        .emphasis-container {
+             position: relative;
+             display: inline-block;
+             padding: 0 40px; /* 線が入るスペースを確保 */
         }
-        .emphasis-lines::before, .emphasis-lines::after {
-            content: '';
+
+        .emphasis-lines-left, .emphasis-lines-right {
             position: absolute;
+            top: 50%;
             width: 30px;
             height: 2px;
             background: white;
-            top: 50%;
         }
-        .emphasis-lines::before { left: -40px; transform: rotate(-20deg); }
-        .emphasis-lines::after { right: -40px; transform: rotate(20deg); }
+        .emphasis-lines-left { left: 0; transform: rotate(-25deg); }
+        .emphasis-lines-right { right: 0; transform: rotate(25deg); }
 
 
         /* --- フッターの写真エリア --- */
@@ -211,6 +196,7 @@
             padding: 20px;
             margin-bottom: 50px;
             position: relative;
+            margin-top: 20px;
         }
 
         .polaroid {
@@ -225,6 +211,7 @@
         .polaroid:nth-child(3) { transform: rotate(-1deg); }
         .polaroid:nth-child(4) { transform: rotate(4deg); }
 
+        /* ※ここに実際の画像のパスを入れてください */
         .polaroid img {
             width: 100%;
             height: auto;
@@ -253,9 +240,6 @@
 <div class="container">
 
     <header class="header">
-        <div class="person-placeholder person-left">人物画像(左)<br>ここへ配置</div>
-        <div class="person-placeholder person-right">人物画像(右)<br>ここへ配置</div>
-
         <div class="top-tags">
             <div class="tag tag-red">一般家庭</div>
             <div class="tag tag-blue">法人・店舗</div>
@@ -274,83 +258,85 @@
     <section class="services-grid">
         <div class="service-item">
             <div class="check-badge"></div>
-            <div class="circle-img"><img src="https://via.placeholder.com/150" alt="家具家電の移動"></div>
+            <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="家具家電の移動"></div>
             <div class="service-name">家具家電の移動</div>
         </div>
         <div class="service-item">
             <div class="check-badge"></div>
-            <div class="circle-img"><img src="https://via.placeholder.com/150" alt="家具組み立て"></div>
+            <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="家具組み立て"></div>
             <div class="service-name">家具組み立て</div>
         </div>
         <div class="service-item">
             <div class="check-badge"></div>
-            <div class="circle-img"><img src="https://via.placeholder.com/150" alt="高所作業"></div>
+            <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="高所作業"></div>
             <div class="service-name">高所作業</div>
         </div>
         <div class="service-item">
             <div class="check-badge"></div>
-            <div class="circle-img"><img src="https://via.placeholder.com/150" alt="同行"></div>
+            <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="同行"></div>
             <div class="service-name">同行</div>
         </div>
 
         <div class="service-item">
             <div class="check-badge"></div>
-            <div class="circle-img"><img src="https://via.placeholder.com/150" alt="代理"></div>
+            <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="代理"></div>
             <div class="service-name">代理</div>
         </div>
         <div class="service-item">
             <div class="check-badge"></div>
-            <div class="circle-img"><img src="https://via.placeholder.com/150" alt="シニアサポート"></div>
+            <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="シニアサポート"></div>
             <div class="service-name">シニアサポート</div>
         </div>
         <div class="service-item">
             <div class="check-badge"></div>
-            <div class="circle-img"><img src="https://via.placeholder.com/150" alt="付き添い代行"></div>
+            <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="付き添い代行"></div>
             <div class="service-name">付き添い代行</div>
         </div>
         <div class="service-item">
             <div class="check-badge"></div>
-            <div class="circle-img"><img src="https://via.placeholder.com/150" alt="家事代行"></div>
+            <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="家事代行"></div>
             <div class="service-name">家事代行</div>
         </div>
 
         <div class="service-item">
             <div class="check-badge"></div>
-            <div class="circle-img"><img src="https://via.placeholder.com/150" alt="買い物代行"></div>
+            <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="買い物代行"></div>
             <div class="service-name">買い物代行</div>
         </div>
         <div class="service-item">
             <div class="check-badge"></div>
-            <div class="circle-img"><img src="https://via.placeholder.com/150" alt="浮気調査"></div>
+            <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="浮気調査"></div>
             <div class="service-name">浮気調査</div>
         </div>
         <div class="service-item">
             <div class="check-badge"></div>
-            <div class="circle-img"><img src="https://via.placeholder.com/150" alt="イベントサポート"></div>
+            <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="イベントサポート"></div>
             <div class="service-name">イベント<br>サポート</div>
         </div>
         <div class="service-item">
             <div class="check-badge"></div>
-            <div class="circle-img"><img src="https://via.placeholder.com/150" alt="その他サポート"></div>
+            <div class="circle-img"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Image" alt="その他サポート"></div>
             <div class="service-name">その他サポート<span class="small-note">※応相談！</span></div>
         </div>
     </section>
 
     <div class="bottom-message">
-        <div class="emphasis-lines"></div>
-        <h2>
-            あらゆるお困りごとに対応してきた<br>
-            プロ集団が経験と技術で<br>
-            あなたの理想を実現します！
-        </h2>
-        <div class="emphasis-lines"></div>
+        <div class="emphasis-container">
+            <span class="emphasis-lines-left"></span>
+            <h2>
+                あらゆるお困りごとに対応してきた<br>
+                プロ集団が経験と技術で<br>
+                あなたの理想を実現します！
+            </h2>
+            <span class="emphasis-lines-right"></span>
+        </div>
     </div>
 
     <div class="photo-strip">
-        <div class="polaroid"><img src="https://via.placeholder.com/150" alt="写真1"></div>
-        <div class="polaroid"><img src="https://via.placeholder.com/150" alt="写真2"></div>
-        <div class="polaroid"><img src="https://via.placeholder.com/150" alt="写真3"></div>
-        <div class="polaroid"><img src="https://via.placeholder.com/150" alt="写真4"></div>
+        <div class="polaroid"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Photo1" alt="写真1"></div>
+        <div class="polaroid"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Photo2" alt="写真2"></div>
+        <div class="polaroid"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Photo3" alt="写真3"></div>
+        <div class="polaroid"><img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Photo4" alt="写真4"></div>
         
         <div class="check-sticker">Check!!</div>
     </div>
@@ -359,3 +345,4 @@
 
 </body>
 </html>
+
