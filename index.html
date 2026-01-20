@@ -2136,18 +2136,18 @@
     </section>
 
     <div class="fixed-call-button">
-        <div class="call-bubble">
+        <div class="call-bubble" id="footer-bubble">
             お見積もり、相談、キャンセル、<span class="highlight-zero">0円！</span>
         </div>
-        <a href="tel:0120-11-1499" class="call-link">
-            <span class="icon-box"><i class="fas fa-phone-volume"></i></span>
-            <span class="tel-number">050-3528-0140</span>
+        <a href="tel:050-3528-0140" class="call-link" id="footer-link">
+            <span class="icon-box"><i class="fas fa-phone-volume" id="footer-icon"></i></span>
+            <span class="tel-number" id="footer-main-text">050-3528-0140</span>
             <span class="arrow-box"><i class="fas fa-chevron-right"></i></span>
         </a>
     </div>
 
     <script>
-        /* --- ステータスバー用スクリプト --- */
+        /* --- ステータスバー ＆ フッターボタン制御用スクリプト --- */
         function updateStatusBarDateTime() {
             const now = new Date();
             const y = now.getFullYear();
@@ -2156,15 +2156,17 @@
             const hh = String(now.getHours()).padStart(2, '0');
             const mm = String(now.getMinutes()).padStart(2, '0');
             
+            // 日付・時間の表示更新
             const dateStr = `${y}年${m}月${d}日`;
             const timeStr = `${hh}:${mm}`;
-            
             document.querySelectorAll('.current-date').forEach(el => el.textContent = dateStr);
             document.querySelectorAll('.current-time').forEach(el => el.textContent = timeStr);
 
+            // 営業時間判定 (10時〜20時を営業時間とする)
             const currentHour = now.getHours();
             const isBusinessTime = (currentHour >= 10 && currentHour < 20);
 
+            // --- 1. ステータスバーの更新 ---
             document.querySelectorAll('.status-text').forEach(el => {
                 el.textContent = isBusinessTime ? "受付可能！" : "メールでの受付中";
             });
@@ -2172,6 +2174,41 @@
                 el.style.display = isBusinessTime ? "inline" : "none";
             });
 
+            // --- 2. フッターボタンの切り替えロジック ---
+            const footerLink = document.getElementById('footer-link');
+            const footerIcon = document.getElementById('footer-icon');
+            const footerText = document.getElementById('footer-main-text');
+            const footerBubble = document.getElementById('footer-bubble');
+
+            if (footerLink && footerIcon && footerText && footerBubble) {
+                if (isBusinessTime) {
+                    // 【営業時間内】電話モード
+                    footerLink.setAttribute('href', 'tel:050-3528-0140');
+                    footerLink.style.backgroundColor = 'var(--primary-navy)'; // 通常のネイビー
+                    
+                    footerIcon.className = 'fas fa-phone-volume'; // 電話アイコン
+                    
+                    footerText.textContent = '050-3528-0140';
+                    footerText.style.fontSize = '32px'; // 数字用のサイズ
+                    footerText.style.fontFamily = '"Arial", sans-serif';
+
+                    footerBubble.innerHTML = 'お見積もり、相談、キャンセル、<span class="highlight-zero">0円！</span>';
+                } else {
+                    // 【営業時間外】メールモード
+                    footerLink.setAttribute('href', '#contact-form-area'); // フォームへリンク
+                    footerLink.style.backgroundColor = '#27ae60'; // メール用の緑色に変更
+                    
+                    footerIcon.className = 'fas fa-envelope'; // メールアイコン
+                    
+                    footerText.textContent = 'メールで問い合わせ';
+                    footerText.style.fontSize = '24px'; // 日本語用のサイズ調整
+                    footerText.style.fontFamily = 'inherit'; // フォント戻し
+
+                    footerBubble.textContent = '営業時間外のためメールで24時間受付中';
+                }
+            }
+
+            // (既存のアニメーション処理)
             const target = document.getElementById('scroll-target');
             if(target && target.children.length === 1) {
                 for(let i=0; i<3; i++) {
@@ -2181,7 +2218,7 @@
             }
         }
 
-        /* --- FAQ用スクリプト (Updated for New Class Names) --- */
+        /* --- FAQ用スクリプト --- */
         document.querySelectorAll('.faq-question').forEach(button => {
             button.addEventListener('click', () => {
                 const faqItem = button.parentElement;
@@ -2189,7 +2226,7 @@
             });
         });
 
-        /* --- 料金シミュレーション用スクリプト (Input 2から統合) --- */
+        /* --- 料金シミュレーション用スクリプト --- */
         let selectedCategory = '';
         let selectedPlace = '';
         let selectedBuilding = '';
@@ -2264,12 +2301,8 @@
             const resultTab = document.getElementById('tab-result');
             resultTab.classList.add('ready');
 
-            // 簡易ロジック：依頼内容によって目安金額を変えるデモ
-            // 2980円～: 家具組み立て、掃除、住まいの修繕
-            // 4980円～: 草刈り、引越し（重作業系）
             let price = '4,980'; 
             const groupLow = ['家具の組み立て', '掃除・片付け', '住まいの修繕'];
-            // const groupMid = ['草刈り・剪定', '引越し・運搬']; // 他は高めに設定
 
             if (groupLow.includes(selectedCategory)) {
                 price = '2,980';
